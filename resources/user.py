@@ -19,6 +19,11 @@ _user_parser.add_argument('tipo',
                           required=True,
                           help="This field cannot be blank."
                           )
+_user_parser.add_argument('email',
+                          type=str,
+                          required=True,
+                          help="This field cannot be blank."
+                          )
 _user_parser.add_argument('endereco',
                           type=str,
                           required=True,
