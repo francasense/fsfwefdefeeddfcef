@@ -7,14 +7,16 @@ class UserModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80))
     password = db.Column(db.String(80))
+    email = db.Column(db.String(100))
     tipo = db.Column(db.String(100))
     endereco = db.Column(db.String(120))
     promocao = db.Column(db.String(10))
 
 
-    def __init__(self, username, password, tipo, endereco, promocao):
+    def __init__(self, username, password,email, tipo, endereco, promocao):
         self.username = username
         self.password = password
+        self.email = email
         self.tipo = tipo
         self.endereco = endereco
         self.promocao = promocao
@@ -24,6 +26,7 @@ class UserModel(db.Model):
             'id': self.id,
             'username': self.username,
             'tipo': self.tipo,
+            'email': self.email,
             'endereco': self.endereco,
             'promocao': self.promocao
         }
