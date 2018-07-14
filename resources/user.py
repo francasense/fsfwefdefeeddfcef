@@ -82,7 +82,7 @@ class UserLogin(Resource):
     def post(self):
         data = _user_parser.parse_args()
 
-        user = UserModel.find_by_username(data['username'])
+        user = UserModel.find_by_email(data['email'])
 
         # this is what the `authenticate()` function did in security.py
         if user and safe_str_cmp(user.password, data['password']):
