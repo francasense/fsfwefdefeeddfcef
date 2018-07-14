@@ -14,6 +14,7 @@ _user_parser.add_argument('password',
                           required=True,
                           help="This field cannot be blank."
                           )# tipo, endereco, promocao
+"""
 _user_parser.add_argument('tipo',
                           type=str,
                           required=True,
@@ -39,6 +40,7 @@ _user_parser.add_argument('promocao',
                           required=True,
                           help="This field cannot be blank."
                           )
+                          """
 class UserRegister(Resource):
     def post(self):
         data = _user_parser.parse_args()
