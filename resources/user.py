@@ -24,6 +24,11 @@ _user_parser.add_argument('telefone',
                           required=True,
                           help="This field cannot be blank."
                           )
+_user_parser.add_argument('cpf',
+                          type=int,
+                          required=True,
+                          help="This field cannot be blank."
+                          )
 _user_parser.add_argument('email',
                           type=str,
                           required=True,
