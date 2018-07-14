@@ -14,33 +14,7 @@ _user_parser.add_argument('password',
                           required=True,
                           help="This field cannot be blank."
                           )# tipo, endereco, promocao
-"""
-_user_parser.add_argument('tipo',
-                          type=str,
-                          required=True,
-                          help="This field cannot be blank."
-                          )
-_user_parser.add_argument('email',
-                          type=str,
-                          required=True,
-                          help="This field cannot be blank."
-                          )
-_user_parser.add_argument('telefone',
-                          type=str,
-                          required=True,
-                          help="This field cannot be blank."
-                          )
-_user_parser.add_argument('endereco',
-                          type=str,
-                          required=True,
-                          help="This field cannot be blank."
-                          )
-_user_parser.add_argument('promocao',
-                          type=str,
-                          required=True,
-                          help="This field cannot be blank."
-                          )
-                          """
+
 class UserRegister(Resource):
     def post(self):
         data = _user_parser.parse_args()
