@@ -13,8 +13,13 @@ _user_parser.add_argument('password',
                           type=str,
                           required=True,
                           help="This field cannot be blank."
-                          )# tipo, endereco, promocao
+                          )# tipo, endereco, promocao telefone
 _user_parser.add_argument('tipo',
+                          type=str,
+                          required=True,
+                          help="This field cannot be blank."
+                          )
+_user_parser.add_argument('telefone',
                           type=str,
                           required=True,
                           help="This field cannot be blank."
