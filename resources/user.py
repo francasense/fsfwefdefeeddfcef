@@ -93,7 +93,8 @@ class UserLogin(Resource):
                 'access_token': access_token,
                 'refresh_token': refresh_token,
                 'username': user.username,
-                'id_user': user.id
+                'id_user': user.id,
+               'message': 'dsfsdfsdf'
             }, 200
 
         return {"message": "Invalid Credentials!"}, 401
