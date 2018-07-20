@@ -7,7 +7,6 @@ from resources.user import UserRegister, User, UserLogin, TokenRefresh
 from resources.dependente import Dependente, DependenteList, DependenteSelecao
 from resources.controle import Controle, ControleList, ControleSelecao
 from resources.responsavel import Responsavel, ResponsavelList, ResponsavelSelecao
-from resources.store import Store, StoreList
 from resources.teste import Teste
 
 app = Flask(__name__)
@@ -16,7 +15,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.secret_key = 'jose'  # could do app.config['JWT_SECRET_KEY'] if we prefer
 api = Api(app)
-
 
 
 jwt = JWTManager(app)
@@ -35,14 +33,10 @@ def add_claims_to_jwt(identity):  # Remember identity is what we define when cre
 @jwt.expired_token_loader
 def expired_token_callback():
     return jsonify({
-        
+
         'message': 'The token has expired.',
         'error': 'token_expired'
     }), 401
-
-
-api.add_resource(Store, '/store/<string:name>')
-api.add_resource(StoreList, '/stores')
 
 api.add_resource(Responsavel, '/responsavel/<string:name>')
 api.add_resource(ResponsavelList, '/responsavels')
