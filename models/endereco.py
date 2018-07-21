@@ -1,23 +1,26 @@
 from db import db
 
 
-class EderecoModel(db.Model):
+class EnderecoModel(db.Model):
     __tablename__ = 'enderecos'
 
-    cep = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    cep = db.Column(db.Integer)
     rua = db.Column(db.String(80))
     bairro = db.Column(db.String(40))
     cidade = db.Column(db.String(80))
     estado = db.Column(db.String(40))
+    numero = db.Column(db.Integer)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('UserModel')
 
-    def __init__(self, cep, rua, bairro, cidade, estado,  user_id):
+    def __init__(self, cep, rua, bairro, numero, cidade, estado,  user_id):
         self.name = cep
         self.idade = rua
         self.name = bairro
         self.idade = cidade
+        self.numero = numero
         self.name = estado
         self.user_id = user_id
 
@@ -29,6 +32,7 @@ class EderecoModel(db.Model):
             'name': self.bairro,
             'idade': self.cidade,
             'name': self.estado,
+            'numero': self.numero,
             'user_id': self.user_id
         }
 

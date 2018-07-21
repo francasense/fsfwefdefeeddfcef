@@ -30,6 +30,11 @@ class Endereco(Resource):
                         required=True,
                         help="This field cannot be left blank!"
                         )
+    parser.add_argument('numero',
+                        type=int,
+                        required=True,
+                        help="Every endereco needs a numero."
+                        )
     parser.add_argument('user_id',
                         type=int,
                         required=True,
@@ -77,10 +82,11 @@ class Endereco(Resource):
         endereco = EnderecoModel.find_by_name(cep)
 
         if endereco:
-            endereco.idade = data['rua']
-            endereco.idade = data['bairro']
-            endereco.idade = data['cidade']
-            endereco.idade = data['estado']
+            endereco.rua = data['rua']
+            endereco.bairro = data['bairro']
+            endereco.cidade = data['cidade']
+            endereco.estado = data['estado']
+            endereco.numero = data['numero']
         else:
             endereco = EnderecoModel(cep, **data)
 

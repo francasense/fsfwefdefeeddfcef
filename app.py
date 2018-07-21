@@ -7,6 +7,7 @@ from resources.user import UserRegister, User, UserLogin, TokenRefresh
 from resources.dependente import Dependente, DependenteList, DependenteSelecao
 from resources.controle import Controle, ControleList, ControleSelecao
 from resources.responsavel import Responsavel, ResponsavelList, ResponsavelSelecao
+from resources.endereco import Endereco, EnderecoList, EnderecoSelecao
 from resources.teste import Teste
 
 app = Flask(__name__)
@@ -49,6 +50,10 @@ api.add_resource(DependenteSelecao, '/dependenteselecao/')
 api.add_resource(Controle, '/controle/<string:name>')
 api.add_resource(ControleList, '/controles')
 api.add_resource(ControleSelecao, '/controleselecao/')
+
+api.add_resource(Endereco, '/endereco/<int:cep>')
+api.add_resource(EnderecoList, '/enderecos')
+api.add_resource(EnderecoSelecao, '/enderecoselecao/')
 
 api.add_resource(UserRegister, '/register')
 api.add_resource(User, '/user/<int:user_id>')
