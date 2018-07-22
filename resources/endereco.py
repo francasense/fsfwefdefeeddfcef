@@ -35,6 +35,11 @@ class Endereco(Resource):
                         required=True,
                         help="Every endereco needs a numero."
                         )
+    parser.add_argument('complemento',
+                        #type=int,
+                        required=True,
+                        help="Every endereco needs a numero."
+                        )
     parser.add_argument('user_id',
                         type=int,
                         required=True,
