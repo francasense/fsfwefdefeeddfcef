@@ -56,7 +56,7 @@ api.add_resource(EnderecoList, '/enderecos')
 api.add_resource(EnderecoSelecao, '/enderecoselecao/')
 
 api.add_resource(UserRegister, '/register')
-api.add_resource(User, '/user/<srt:email>')
+api.add_resource(User, '/user/<email:email>')
 api.add_resource(UserLogin, '/login')
 api.add_resource(Teste, '/teste')
 
