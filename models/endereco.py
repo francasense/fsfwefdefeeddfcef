@@ -10,29 +10,32 @@ class EnderecoModel(db.Model):
     bairro = db.Column(db.String(40))
     cidade = db.Column(db.String(80))
     estado = db.Column(db.String(40))
+    complemento = db.Column(db.String(40))
     numero = db.Column(db.Integer)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('UserModel')
 
-    def __init__(self, cep, rua, bairro, numero, cidade, estado,  user_id):
-        self.name = cep
+    def __init__(self, cep, rua, bairro, numero, cidade, estado, complemento, user_id):
+        self.cep = cep
         self.idade = rua
-        self.name = bairro
+        self.bairro = bairro
         self.idade = cidade
         self.numero = numero
-        self.name = estado
+        self.estado = estado
+        self.complemento = complemento
         self.user_id = user_id
 
     def json(self):
         return {
             'id': self.id,
-            'name': self.cep,
-            'idade': self.rua,
-            'name': self.bairro,
+            'cep': self.cep,
+            'rua': self.rua,
+            'bairro': self.bairro,
             'idade': self.cidade,
-            'name': self.estado,
+            'estado': self.estado,
             'numero': self.numero,
+            'complemento': self.complemento,
             'user_id': self.user_id
         }
 
