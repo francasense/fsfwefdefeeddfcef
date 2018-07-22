@@ -50,8 +50,8 @@ class Endereco(Resource):
 
     @jwt_required
     def post(self, cep):
-        if EnderecoModel.find_by_name(cep):
-            return {'message': "An endereço with name '{}' already exists.".format(cep)}, 400
+        #if EnderecoModel.find_by_name(cep):
+            #return {'message': "An endereço with name '{}' already exists.".format(cep)}, 400
 
         data = Endereco.parser.parse_args()
 
@@ -59,6 +59,8 @@ class Endereco(Resource):
 
         try:
             endereco.save_to_db()
+            return {"message": "An error occurred inserting the endereco."}, 500
+
         except:
             return {"message": "An error occurred inserting the endereco."}, 500
 
@@ -87,7 +89,9 @@ class Endereco(Resource):
             endereco.cidade = data['cidade']
             endereco.estado = data['estado']
             endereco.numero = data['numero']
+            endereco.complemento = data['complemento']
         else:
+            
             endereco = EnderecoModel(cep, **data)
 
         endereco.save_to_db()
