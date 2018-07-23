@@ -18,7 +18,7 @@ class EnderecoModel(db.Model):
 
     def __init__(self, cep, rua, bairro, numero, cidade, estado, complemento, user_id):
         self.cep = cep
-        self.idade = rua
+        self.rua = rua
         self.bairro = bairro
         self.idade = cidade
         self.numero = numero
@@ -32,7 +32,7 @@ class EnderecoModel(db.Model):
             'cep': self.cep,
             'rua': self.rua,
             'bairro': self.bairro,
-            'idade': self.cidade,
+            'cidade': self.cidade,
             'estado': self.estado,
             'numero': self.numero,
             'complemento': self.complemento,
