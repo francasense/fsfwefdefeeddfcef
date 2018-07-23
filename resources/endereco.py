@@ -5,11 +5,6 @@ from models.endereco import EnderecoModel
 
 class Endereco(Resource):
     parser = reqparse.RequestParser()
-    parser.add_argument('cep',
-                        #type=int,
-                        required=True,
-                        help="This field cannot be left blank!"
-                        )
     parser.add_argument('rua',
                         #type=int,
                         required=True,
