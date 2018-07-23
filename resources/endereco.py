@@ -6,7 +6,7 @@ from models.endereco import EnderecoModel
 class Endereco(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('cep',
-                        type=int,
+                        #type=int,
                         required=True,
                         help="This field cannot be left blank!"
                         )
@@ -31,7 +31,7 @@ class Endereco(Resource):
                         help="This field cannot be left blank!"
                         )
     parser.add_argument('numero',
-                        type=int,
+                        #type=int,
                         required=True,
                         help="Every endereco needs a numero."
                         )
@@ -113,7 +113,7 @@ class EnderecoList(Resource):
         if user_id:
             return {'enderecos': enderecos}, 200
         return {
-            'enderecos': [endereco['name'] for endereco in enderecos],
+            'enderecos': [endereco['cep'] for endereco in enderecos],
             'message': 'More data available if you log in.'
         }, 200
 
