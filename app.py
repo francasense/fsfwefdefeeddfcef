@@ -51,7 +51,7 @@ api.add_resource(Controle, '/controle/<string:name>')
 api.add_resource(ControleList, '/controles')
 api.add_resource(ControleSelecao, '/controleselecao/')
 
-api.add_resource(Endereco, '/endereco/<int:cep>')
+api.add_resource(Endereco, '/endereco/<string:name>')
 api.add_resource(EnderecoList, '/enderecos')
 api.add_resource(EnderecoSelecao, '/enderecoselecao/')
 
