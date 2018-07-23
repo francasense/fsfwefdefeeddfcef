@@ -20,7 +20,7 @@ class EnderecoModel(db.Model):
         self.cep = cep
         self.rua = rua
         self.bairro = bairro
-        self.idade = cidade
+        self.cidade = cidade
         self.numero = numero
         self.estado = estado
         self.complemento = complemento
