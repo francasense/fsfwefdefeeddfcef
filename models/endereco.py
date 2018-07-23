@@ -5,13 +5,13 @@ class EnderecoModel(db.Model):
     __tablename__ = 'enderecos'
 
     id = db.Column(db.Integer, primary_key=True)
-    cep = db.Column(db.Integer)
+    cep = db.Column(db.String(9))
     rua = db.Column(db.String(80))
-    bairro = db.Column(db.String(40))
+    bairro = db.Column(db.String(80))
     cidade = db.Column(db.String(80))
-    estado = db.Column(db.String(40))
+    estado = db.Column(db.String(50))
     complemento = db.Column(db.String(40))
-    numero = db.Column(db.Integer)
+    numero = db.Column(db.String(20))
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('UserModel')
