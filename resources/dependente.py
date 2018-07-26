@@ -25,8 +25,8 @@ class Dependente(Resource):
 
     @jwt_required
     def post(self, name):
-        if DependenteModel.find_by_name(name):
-            return {'message': "An dependente with name '{}' already exists.".format(name)}, 400
+        #if DependenteModel.find_by_name(name):
+            #return {'message': "An dependente with name '{}' already exists.".format(name)}, 400
 
         data = Dependente.parser.parse_args()
 
@@ -35,8 +35,7 @@ class Dependente(Resource):
         try:
             dependente.save_to_db()
         except:
-            return {"message": "An error occurred inserting the dependente."}, 500
-
+            return {"message": "Erro ao tentar inserir dados"}, 500
         return dependente.json(), 201
 
     @jwt_required
