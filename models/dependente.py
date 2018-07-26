@@ -7,12 +7,14 @@ class DependenteModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
     idade = db.Column(db.String(30))
+    alergia = db.Column(db.String(80))
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('UserModel')
 
-    def __init__(self, name, idade, user_id):
+    def __init__(self, name, alergia, idade, user_id):
         self.name = name
+        self.idade = alergia
         self.idade = idade
         self.user_id = user_id
 
@@ -20,6 +22,7 @@ class DependenteModel(db.Model):
         return {
             'id': self.id,
             'name': self.name,
+            'alergia': self.alergia,
             'idade': self.idade,
             'user_id': self.user_id
         }
