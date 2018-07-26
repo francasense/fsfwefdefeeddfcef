@@ -14,7 +14,7 @@ class DependenteModel(db.Model):
 
     def __init__(self, name, alergia, idade, user_id):
         self.name = name
-        self.idade = alergia
+        self.alergia = alergia
         self.idade = idade
         self.user_id = user_id
 
