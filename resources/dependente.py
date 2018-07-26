@@ -8,14 +8,18 @@ class Dependente(Resource):
     parser.add_argument('idade',
                         type=int,
                         required=True,
-                        help="This field cannot be left blank!"
+                        help="O campo não pode esta vazio!"
+                        )
+    parser.add_argument('alergia',
+                        #type=int,
+                        required=True,
+                        help="O campo não pode esta vazio!"
                         )
     parser.add_argument('user_id',
                         type=int,
                         required=True,
-                        help="Every dependente needs a user_id."
+                        help="This field cannot be left blank!"
                         )
-
     @jwt_required  # No longer needs brackets
     def get(self, name):
         dependente = DependenteModel.find_by_name(name)
@@ -57,6 +61,7 @@ class Dependente(Resource):
 
         if dependente:
             dependente.idade = data['idade']
+            dependente.alergia = data['alergia']
         else:
             dependente = DependenteModel(name, **data)
 
