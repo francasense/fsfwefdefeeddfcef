@@ -6,13 +6,15 @@ class ResponsavelModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
-    telefone = db.Column(db.String(30))
+    cpf = db.Column(db.Integer)
+    telefone = db.Column(db.Integer)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('UserModel')
 
-    def __init__(self, name, telefone, user_id):
+    def __init__(self, name, cpf, telefone, user_id):
         self.name = name
+         self.cpf = cpf
         self.telefone = telefone
         self.user_id = user_id
 
@@ -20,6 +22,7 @@ class ResponsavelModel(db.Model):
         return {
             'id': self.id,
             'name': self.name,
+            'cpf': self.cpf,
             'telefone': self.telefone,
             'user_id': self.user_id
         }
