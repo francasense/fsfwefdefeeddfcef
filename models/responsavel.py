@@ -6,8 +6,8 @@ class ResponsavelModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
-    cpf = db.Column(db.Integer)
-    telefone = db.Column(db.Integer)
+    cpf = db.Column(db.String(11))
+    telefone = db.Column(db.String(30))
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('UserModel')
