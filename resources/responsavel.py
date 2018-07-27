@@ -10,6 +10,11 @@ class Responsavel(Resource):
                         required=True,
                         help="This field cannot be left blank!"
                         )
+    parser.add_argument('cpf',
+                        type=int,
+                        required=True,
+                        help="This field cannot be left blank!"
+                        )
     parser.add_argument('user_id',
                         type=int,
                         required=True,
@@ -58,6 +63,7 @@ class Responsavel(Resource):
 
         if responsavel:
             responsavel.telefone = data['telefone']
+            responsavel.cpf = data['cpf']
         else:
             responsavel = ResponsavelModel(name, **data)
 
