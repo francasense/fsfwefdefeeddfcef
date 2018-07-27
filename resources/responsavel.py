@@ -6,12 +6,12 @@ from models.responsavel import ResponsavelModel
 class Responsavel(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('telefone',
-                        type=int,
+                        #type=int,
                         required=True,
                         help="This field cannot be left blank!"
                         )
     parser.add_argument('cpf',
-                        type=int,
+                        #type=int,
                         required=True,
                         help="This field cannot be left blank!"
                         )
