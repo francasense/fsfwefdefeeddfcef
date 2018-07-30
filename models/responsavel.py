@@ -14,7 +14,7 @@ class ResponsavelModel(db.Model):
 
     def __init__(self, name, cpf, telefone, user_id):
         self.name = name
-         self.cpf = cpf
+        self.cpf = cpf
         self.telefone = telefone
         self.user_id = user_id
 
