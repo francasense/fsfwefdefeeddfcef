@@ -42,7 +42,7 @@ class Responsavel(Resource):
         except:
             return {"message": "An error occurred inserting the responsavel."}, 500
 
-        return responsavel.json(), 201
+        return (responsavel.json(), {'message': 'Responsavel not found.'}), 201
 
     @jwt_required
     def delete(self, name):
