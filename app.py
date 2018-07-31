@@ -46,7 +46,7 @@ api.add_resource(ResponsavelSelecao, '/responsavelselecao/')
 api.add_resource(Dependente, '/dependente/<string:name>')
 api.add_resource(DependenteList, '/dependentes')
 api.add_resource(DependenteSelecao, '/dependenteselecao/')#DependenteDelete
-api.add_resource(DependenteDelete, '/dependente/<int:id>')
+api.add_resource(DependenteDelete, '/dependentedelete/<int:id>')
 
 api.add_resource(Controle, '/controle/<string:name>')
 api.add_resource(ControleList, '/controles')
