@@ -54,16 +54,17 @@ class Dependente(Resource):
             return {'message': 'Dependente deleted.'}
         return {'message': 'Dependente not found.'}, 404
 
-    def put(self, name):
+    def put(self, id):
         data = Dependente.parser.parse_args()
 
-        dependente = DependenteModel.find_by_name(name)
+        dependente = DependenteModel.find_by_id_unique(id)
 
         if dependente:
+            dependente.name = data['name']
             dependente.idade = data['idade']
             dependente.alergia = data['alergia']
         else:
-            dependente = DependenteModel(name, **data)
+            dependente = DependenteModel(id, **data)
 
         dependente.save_to_db()
 
