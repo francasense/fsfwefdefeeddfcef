@@ -62,13 +62,13 @@ class DependenteDelete(Resource):
                         help="This field cannot be left blank!"
                         )
     @jwt_required
-    @classmethod
-    def delete(cls, id: int):
+    #@classmethod
+    def delete(self, id):
         dependente = DependenteModel.find_by_id_unique(id)
-        if not dependente:
-            return {'message': 'Ninos Not Found'}, 404
-        dependente.delete_from_db()
-        return {'message': 'Ninos deleted.'}, 200
+        if dependente:
+            dependente.delete_from_db()
+            return {'message': 'Ninos deleted.'}
+        return {'message': 'Ninos not found.'}, 404
     
     @jwt_required
     def put(self, id):
