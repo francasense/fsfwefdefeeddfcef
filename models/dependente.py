@@ -32,8 +32,8 @@ class DependenteModel(db.Model):
         return cls.query.filter_by(name=name).first()
 
     @classmethod
-    def find_by_id_unique(cls, _id):
-        return cls.query.filter_by(id=_id).first()
+    def find_by_id_unique(cls, id):
+        return cls.query.filter_by(id=id).first()
     
     @classmethod
     def find_by_id(cls, _id):
