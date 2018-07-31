@@ -4,7 +4,7 @@ from flask_jwt_extended import JWTManager
 
 from db import db
 from resources.user import UserRegister, User, UserLogin, TokenRefresh
-from resources.dependente import Dependente, DependenteList, DependenteSelecao
+from resources.dependente import Dependente, DependenteList, DependenteSelecao, DependenteDelete
 from resources.controle import Controle, ControleList, ControleSelecao
 from resources.responsavel import Responsavel, ResponsavelList, ResponsavelSelecao
 from resources.endereco import Endereco, EnderecoList, EnderecoSelecao
