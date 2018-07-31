@@ -54,6 +54,8 @@ class Dependente(Resource):
             return {'message': 'Dependente deleted.'}
         return {'message': 'Dependente not found.'}, 404
 
+    
+class DependenteDelete(Resource):
     def put(self, id):
         data = Dependente.parser.parse_args()
 
@@ -70,7 +72,7 @@ class Dependente(Resource):
 
         return dependente.json()
 
-
+    
 class DependenteList(Resource):
     @jwt_required
     def get(self):
