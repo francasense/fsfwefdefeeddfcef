@@ -31,13 +31,13 @@ def add_claims_to_jwt(identity):  # Remember identity is what we define when cre
         return {'is_admin': True}
     return {'is_admin': False}
 
-@jwt.expired_token_loader
-def expired_token_callback():
-    return jsonify({
+#@jwt.expired_token_loader
+#def expired_token_callback():
+ #   return jsonify({
 
-        'message': 'The token has expired.',
-        'error': 'token_expired'
-    }), 401
+  #      'message': 'The token has expired.',
+   #     'error': 'token_expired'
+    #}), 401
 
 api.add_resource(Responsavel, '/responsavel/<string:name>')
 api.add_resource(ResponsavelList, '/responsavels')
@@ -45,7 +45,8 @@ api.add_resource(ResponsavelSelecao, '/responsavelselecao/')
 
 api.add_resource(Dependente, '/dependente/<string:name>')
 api.add_resource(DependenteList, '/dependentes')
-api.add_resource(DependenteSelecao, '/dependenteselecao/')
+api.add_resource(DependenteSelecao, '/dependenteselecao/')#DependenteDelete
+api.add_resource(DependenteDelete, '/dependente/<int:id>')
 
 api.add_resource(Controle, '/controle/<string:name>')
 api.add_resource(ControleList, '/controles')
