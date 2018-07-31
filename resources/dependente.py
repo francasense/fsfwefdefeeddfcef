@@ -42,6 +42,7 @@ class Dependente(Resource):
             return {"message": "Erro ao tentar inserir dados"}, 500
         return dependente.json(), 201
     
+
     
 class DependenteDelete(Resource):
     parser = reqparse.RequestParser()
@@ -60,18 +61,14 @@ class DependenteDelete(Resource):
                         required=True,
                         help="This field cannot be left blank!"
                         )
-
     @jwt_required
-    def delete(self, id):
-        claims = get_jwt_claims()
-        if not claims['is_admin']:
-            return {'message': 'Admin privilege required.'}, 401
-
+    @classmethod
+    def delete(cls, id: int):
         dependente = DependenteModel.find_by_id_unique(id)
-        if dependente:
-            dependente.delete_from_db()
-            return {'message': 'Dependente deleted.'}
-        return {'message': 'Dependente not found.'}, 404
+        if not dependente:
+            return {'message': 'Ninos Not Found'}, 404
+        dependente.delete_from_db()
+        return {'message': 'Ninos deleted.'}, 200
     
     @jwt_required
     def put(self, id):
