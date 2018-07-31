@@ -80,7 +80,7 @@ class DependenteDelete(Resource):
             dependente.name = data['name']
             dependente.idade = data['idade']
             dependente.alergia = data['alergia']
-            dependente.user_id = data['user_id']
+            #dependente.user_id = data['user_id']
         else:
             dependente = DependenteModel(id, **data)
 
