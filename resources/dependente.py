@@ -46,6 +46,11 @@ class Dependente(Resource):
     
 class DependenteDelete(Resource):
     parser = reqparse.RequestParser()
+    parser.add_argument('name',
+                        #type=int,
+                        required=True,
+                        help="O campo não pode esta vazio!"
+                        )
     parser.add_argument('idade',
                         type=int,
                         required=True,
