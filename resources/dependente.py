@@ -77,8 +77,6 @@ class DependenteDelete(Resource):
     
     @jwt_required
     def put(self, id):
-        data = Dependente.parser.parse_args()
-
         dependente = DependenteModel.find_by_id_unique(id)
 
         if dependente:
