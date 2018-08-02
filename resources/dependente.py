@@ -41,9 +41,27 @@ class Dependente(Resource):
         except:
             return {"message": "Erro ao tentar inserir dados"}, 500
         return dependente.json(), 201
-    
 
-    
+
+"""
+    def put(self, name):
+        data = Dependente.parser.parse_args()
+
+        dependente = DependenteModel.find_by_id_unique(data['id'])
+
+        if dependente:
+            dependente.name = data['name']
+            dependente.idade = data['idade']
+            dependente.alergia = data['alergia']
+            dependente.user_id = data['user_id']
+        else:
+            dependente = DependenteModel(name, **data)
+
+        dependente.save_to_db()
+
+        return dependente.json()
+"""
+
 class DependenteDelete(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('name',
@@ -74,9 +92,11 @@ class DependenteDelete(Resource):
             dependente.delete_from_db()
             return {'message': 'Ninos deleted.'}
         return {'message': 'Ninos not found.'}, 404
-    
+
     @jwt_required
-    def put(self, id):
+    def put(self, id: int):
+        data = DependenteDelete.parser.parse_args()
+
         dependente = DependenteModel.find_by_id_unique(id)
 
         if dependente:
@@ -91,7 +111,7 @@ class DependenteDelete(Resource):
 
         return dependente.json()
 
-    
+
 class DependenteList(Resource):
     @jwt_required
     def get(self):
