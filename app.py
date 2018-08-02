@@ -6,7 +6,7 @@ from db import db
 from resources.user import UserRegister, User, UserLogin, TokenRefresh
 from resources.dependente import Dependente, DependenteList, DependenteSelecao, DependenteDelete
 from resources.controle import Controle, ControleList, ControleSelecao
-from resources.responsavel import Responsavel, ResponsavelList, ResponsavelSelecao
+from resources.responsavel import Responsavel, ResponsavelList, ResponsavelSelecao, ResponsavelDelete
 from resources.endereco import Endereco, EnderecoList, EnderecoSelecao
 from resources.teste import Teste
 
@@ -42,6 +42,7 @@ def add_claims_to_jwt(identity):  # Remember identity is what we define when cre
 api.add_resource(Responsavel, '/responsavel/<string:name>')
 api.add_resource(ResponsavelList, '/responsavels')
 api.add_resource(ResponsavelSelecao, '/responsavelselecao/')
+api.add_resource(ResponsavelDelete, '/responsaveldelete/<int:id>')
 
 api.add_resource(Dependente, '/dependente/<string:name>')
 api.add_resource(DependenteList, '/dependentes')
