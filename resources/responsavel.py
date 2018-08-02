@@ -44,28 +44,52 @@ class Responsavel(Resource):
 
         return (responsavel.json(), {'message': 'Responsavel not found.'}), 201
 
-    @jwt_required
-    def delete(self, name):
-        claims = get_jwt_claims()
-        if not claims['is_admin']:
-            return {'message': 'Admin privilege required.'}, 401
 
-        responsavel = ResponsavelModel.find_by_name(name)
+
+class ResponsavelDelete(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('name',
+                        #type=int,
+                        required=True,
+                        help="O campo não pode esta vazio!"
+                        )
+    parser.add_argument('telefone',
+                        #type=int,
+                        required=True,
+                        help="O campo não pode esta vazio!"
+                        )
+    parser.add_argument('cpf',
+                        #type=int,
+                        required=True,
+                        help="O campo não pode esta vazio!"
+                        )
+    parser.add_argument('user_id',
+                        type=int,
+                        required=True,
+                        help="Every responsavel needs a user_id."
+                        )
+
+    @jwt_required
+    def delete(self, id):
+
+        responsavel = ResponsavelModel.find_by_id_unique(id)
         if responsavel:
             responsavel.delete_from_db()
             return {'message': 'Responsavel deleted.'}
         return {'message': 'Responsavel not found.'}, 404
 
-    def put(self, name):
-        data = Responsavel.parser.parse_args()
+    def put(self, id: int):
+        data = ResponsavelDelete.parser.parse_args()
 
-        responsavel = ResponsavelModel.find_by_name(name)
+        responsavel = ResponsavelModel.find_by_id_unique(id)
 
         if responsavel:
+            dependente.name = data['name']
             responsavel.telefone = data['telefone']
             responsavel.cpf = data['cpf']
+            responsavel.user_id = data['user_id']
         else:
-            responsavel = ResponsavelModel(name, **data)
+            responsavel = ResponsavelModel(id, **data)
 
         responsavel.save_to_db()
 
