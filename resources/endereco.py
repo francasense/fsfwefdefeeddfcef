@@ -116,7 +116,7 @@ class EnderecoDelete(Resource):
             return {'message': 'Endereco deleted.'}
         return {'message': 'Endereco not found.'}, 404
 
-    def put(self, id):
+    def put(self, id: int):
         data = EnderecoDelete.parser.parse_args()
 
         endereco = EnderecoModel.find_by_id_unique(id)
