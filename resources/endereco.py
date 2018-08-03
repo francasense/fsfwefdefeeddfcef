@@ -64,24 +64,65 @@ class Endereco(Resource):
 
         return endereco.json(), 201
 
+class EnderecoDelete(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('cep',
+                        #type=int,
+                        required=True,
+                        help="This field cannot be left blank!"
+                        )
+    parser.add_argument('rua',
+                        #type=int,
+                        required=True,
+                        help="This field cannot be left blank!"
+                        )
+    parser.add_argument('bairro',
+                        #type=int,
+                        required=True,
+                        help="This field cannot be left blank!"
+                        )
+    parser.add_argument('cidade',
+                        #type=int,
+                        required=True,
+                        help="This field cannot be left blank!"
+                        )
+    parser.add_argument('estado',
+                        #type=int,
+                        required=True,
+                        help="This field cannot be left blank!"
+                        )
+    parser.add_argument('numero',
+                        #type=int,
+                        required=True,
+                        help="Every endereco needs a numero."
+                        )
+    parser.add_argument('complemento',
+                        #type=int,
+                        required=True,
+                        help="Every endereco needs a numero."
+                        )
+    parser.add_argument('user_id',
+                        type=int,
+                        required=True,
+                        help="Every endereco needs a user_id."
+                        )
+    
     @jwt_required
-    def delete(self, cep):
-        claims = get_jwt_claims()
-        if not claims['is_admin']:
-            return {'message': 'Admin privilege required.'}, 401
-
-        endereco = EnderecoModel.find_by_name(cep)
+    def delete(self, id):
+        
+        endereco = EnderecoModel.find_by_id_unique(id)
         if endereco:
             endereco.delete_from_db()
             return {'message': 'Endereco deleted.'}
         return {'message': 'Endereco not found.'}, 404
 
-    def put(self, cep):
-        data = Endereco.parser.parse_args()
+    def put(self, id):
+        data = EnderecoDelete.parser.parse_args()
 
-        endereco = EnderecoModel.find_by_name(cep)
+        endereco = EnderecoModel.find_by_id_unique(id)
 
         if endereco:
+            endereco.cep = data['cep']
             endereco.rua = data['rua']
             endereco.bairro = data['bairro']
             endereco.cidade = data['cidade']
@@ -89,7 +130,7 @@ class Endereco(Resource):
             endereco.numero = data['numero']
             endereco.complemento = data['complemento']
         else:
-            endereco = EnderecoModel(cep, **data)
+            endereco = EnderecoModel(id, **data)
 
         endereco.save_to_db()
 
