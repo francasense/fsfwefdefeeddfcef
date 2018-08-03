@@ -42,7 +42,11 @@ class EnderecoModel(db.Model):
     @classmethod
     def find_by_name(cls, cep):
         return cls.query.filter_by(cep=cep).first()
-
+    
+    @classmethod
+    def find_by_id_unique(cls, id):
+        return cls.query.filter_by(id=id).first()
+    
     @classmethod
     def find_by_id(cls, _id):
         return cls.query.filter_by(user_id=_id).all()
