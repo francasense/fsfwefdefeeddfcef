@@ -8,7 +8,7 @@ class DependenteModel(db.Model):
     name = db.Column(db.String(80))
     idade = db.Column(db.String(30))
     alergia = db.Column(db.String(80))
-    msg = db.Column(db.String(2), default="ok")
+    msg = db.Column(db.String(2))
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('UserModel')
