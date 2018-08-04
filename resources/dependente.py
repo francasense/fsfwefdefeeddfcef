@@ -115,7 +115,7 @@ class DependenteDelete(Resource):
     def get(self, id: int):
         dependente = DependenteModel.find_by_id_unique(id)
         if dependente:
-            return dependente.json()
+            return {'msg': 'Ninos not found.'},dependente.json()
         return {'message': 'Dependente not found'}, 404
 
 
