@@ -79,6 +79,7 @@ class User(Resource):
 
 
 class UserLogin(Resource):
+    session.permanent = True
     def post(self):
         data = _user_parser.parse_args()
 
