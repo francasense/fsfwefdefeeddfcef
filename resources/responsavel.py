@@ -15,6 +15,11 @@ class Responsavel(Resource):
                         required=True,
                         help="This field cannot be left blank!"
                         )
+    parser.add_argument('msg',
+                        #type=int,
+                        required=True,
+                        help="This field cannot be left blank!"
+                        )
     parser.add_argument('user_id',
                         type=int,
                         required=True,
@@ -58,6 +63,11 @@ class ResponsavelDelete(Resource):
                         required=True,
                         help="O campo não pode esta vazio!"
                         )
+    parser.add_argument('msg',
+                        #type=int,
+                        required=True,
+                        help="This field cannot be left blank!"
+                        )
     parser.add_argument('cpf',
                         #type=int,
                         required=True,
@@ -87,6 +97,7 @@ class ResponsavelDelete(Resource):
             dependente.name = data['name']
             responsavel.telefone = data['telefone']
             responsavel.cpf = data['cpf']
+            responsavel.msg = data['msg']
             responsavel.user_id = data['user_id']
         else:
             responsavel = ResponsavelModel(id, **data)
