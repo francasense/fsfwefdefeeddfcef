@@ -109,13 +109,13 @@ class DependenteDelete(Resource):
 
         dependente.save_to_db()
 
-        return {'msg': 'Ninos not found.'},dependente.json()
+        return {'msg':'ok', dependente.json()}
     
     @jwt_required  # No longer needs brackets
     def get(self, id: int):
         dependente = DependenteModel.find_by_id_unique(id)
         if dependente:
-            return {'msg': 'Ninos not found.'},dependente.json()
+            return {'msg':'ok', dependente.json()}
         return {'message': 'Dependente not found'}, 404
 
 
