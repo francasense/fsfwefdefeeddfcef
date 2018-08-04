@@ -8,15 +8,17 @@ class ResponsavelModel(db.Model):
     name = db.Column(db.String(80))
     cpf = db.Column(db.String(11))
     telefone = db.Column(db.String(30))
+    msg = db.Column(db.String(2))
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('UserModel')
 
-    def __init__(self, name, cpf, telefone, user_id):
+    def __init__(self, name, cpf, telefone, user_id, msg):
         self.name = name
         self.cpf = cpf
         self.telefone = telefone
         self.user_id = user_id
+        self.msg = msg
 
     def json(self):
         return {
@@ -24,7 +26,8 @@ class ResponsavelModel(db.Model):
             'name': self.name,
             'cpf': self.cpf,
             'telefone': self.telefone,
-            'user_id': self.user_id
+            'user_id': self.user_id,
+            'msg': self.msg
         }
 
     @classmethod
