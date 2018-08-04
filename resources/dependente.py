@@ -54,6 +54,7 @@ class Dependente(Resource):
             dependente.idade = data['idade']
             dependente.alergia = data['alergia']
             dependente.user_id = data['user_id']
+            dependente.msg = data['msg']
         else:
             dependente = DependenteModel(name, **data)
 
@@ -103,6 +104,7 @@ class DependenteDelete(Resource):
             dependente.name = data['name']
             dependente.idade = data['idade']
             dependente.alergia = data['alergia']
+            dependente.msg = data['msg']
             dependente.user_id = data['user_id']
         else:
             dependente = DependenteModel(id, **data)
