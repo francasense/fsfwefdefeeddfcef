@@ -15,6 +15,11 @@ class Dependente(Resource):
                         required=True,
                         help="O campo não pode esta vazio!"
                         )
+    parser.add_argument('msg',
+                        #type=int,
+                        required=True,
+                        help="This field cannot be left blank!"
+                        )
     parser.add_argument('user_id',
                         type=int,
                         required=True,
@@ -74,6 +79,11 @@ class DependenteDelete(Resource):
                         type=int,
                         required=True,
                         help="O campo não pode esta vazio!"
+                        )
+    parser.add_argument('msg',
+                        #type=int,
+                        required=True,
+                        help="This field cannot be left blank!"
                         )
     parser.add_argument('alergia',
                         #type=int,
