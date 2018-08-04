@@ -139,7 +139,7 @@ class DependenteSelecao(Resource):
         user_id = get_jwt_identity()
         dependentes = [dependente.json() for dependente in DependenteModel.find_by_id(user_id)]
         if user_id:
-            return {'dependentes': dependentes}, 200
+            return {'dependentes': dependentes, 'msg':'ok'}, 200
         return {
             'dependentes': [dependente['name'] for dependente in dependentes],
             'message': 'More data available if you log in.'
