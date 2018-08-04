@@ -109,7 +109,7 @@ class DependenteDelete(Resource):
 
         dependente.save_to_db()
 
-        return dependente.json()
+        return {'msg': 'Ninos not found.'},dependente.json()
     
     @jwt_required  # No longer needs brackets
     def get(self, id: int):
