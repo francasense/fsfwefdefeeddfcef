@@ -8,15 +8,17 @@ class DependenteModel(db.Model):
     name = db.Column(db.String(80))
     idade = db.Column(db.String(30))
     alergia = db.Column(db.String(80))
+    msg = db.Column(db.String(2), default="ok")
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('UserModel')
 
-    def __init__(self, name, alergia, idade, user_id):
+    def __init__(self, name, alergia, idade, user_id, msg):
         self.name = name
         self.alergia = alergia
         self.idade = idade
         self.user_id = user_id
+        self.msg = msg
 
     def json(self):
         return {
@@ -24,6 +26,7 @@ class DependenteModel(db.Model):
             'name': self.name,
             'alergia': self.alergia,
             'idade': self.idade,
+            'msg': self.msg,
             'user_id': self.user_id
         }
 
