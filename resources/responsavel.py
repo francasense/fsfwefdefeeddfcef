@@ -124,7 +124,7 @@ class ResponsavelSelecao(Resource):
         user_id = get_jwt_identity()
         responsavels = [responsavel.json() for responsavel in ResponsavelModel.find_by_id(user_id)]
         if user_id:
-            return {'dependentes': responsavels}, 200
+            return {'dependentes': responsavels, 'msg':'ok'}, 200
         return {
             'responsavels': [responsavel['name'] for responsavel in responsavel],
             'message': 'More data available if you log in.'
