@@ -87,7 +87,8 @@ class ResponsavelDelete(Resource):
             responsavel.delete_from_db()
             return {'message': 'Responsavel deleted.'}
         return {'message': 'Responsavel not found.'}, 404
-
+    
+    @jwt_required 
     def put(self, id: int):
         data = ResponsavelDelete.parser.parse_args()
 
@@ -105,7 +106,13 @@ class ResponsavelDelete(Resource):
         responsavel.save_to_db()
 
         return responsavel.json()
-
+    
+    @jwt_required  # No longer needs brackets
+    def get(self, id: int):
+        dependente = DependenteModel.find_by_id_unique(id)
+        if dependente:
+            return dependente.json()
+        return {'message': 'Dependente not found'}, 404
 
 class ResponsavelList(Resource):
     @jwt_required
