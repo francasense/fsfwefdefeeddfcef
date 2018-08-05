@@ -109,10 +109,10 @@ class ResponsavelDelete(Resource):
     
     @jwt_required  # No longer needs brackets
     def get(self, id: int):
-        dependente = DependenteModel.find_by_id_unique(id)
-        if dependente:
-            return dependente.json()
-        return {'message': 'Dependente not found'}, 404
+        responsavel = ResponsavelModel.find_by_id_unique(id)
+        if responsavel:
+            return responsavel.json()
+        return {'message': 'Responsavel not found'}, 404
 
 class ResponsavelList(Resource):
     @jwt_required
