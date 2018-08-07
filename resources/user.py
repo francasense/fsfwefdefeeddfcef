@@ -64,8 +64,8 @@ class User(Resource):
     sake of demonstration in this course, it can be useful when we are manipulating data regarding the users.
     """
     @classmethod
-    def get(cls, email):
-        user = UserModel.find_by_email(email)
+    def get(cls, user_id: int):
+        user = UserModel.find_by_id(user_id)
         if not user:
             return {'message': 'User Not Found'}, 404
         return user.json(), 200
