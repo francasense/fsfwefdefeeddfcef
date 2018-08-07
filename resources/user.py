@@ -64,15 +64,15 @@ class User(Resource):
     sake of demonstration in this course, it can be useful when we are manipulating data regarding the users.
     """
     @jwt_required
-    def get(cls, id):
-        user = UserModel.find_by_id(id)
+    def get(cls, _id):
+        user = UserModel.find_by_id(_id)
         if not user:
             return {'message': 'User Not Found'}, 404
         return user.json(), 200
 
     @classmethod
-    def delete(cls, id):
-        user = UserModel.find_by_id(id)
+    def delete(cls, _id):
+        user = UserModel.find_by_id(_id)
         if not user:
             return {'message': 'User Not Found'}, 404
         user.delete_from_db()
