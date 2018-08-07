@@ -59,7 +59,7 @@ api.add_resource(EnderecoSelecao, '/enderecoselecao/')#EnderecoDelete
 api.add_resource(EnderecoDelete, '/enderecodelete/<int:id>')
 
 api.add_resource(UserRegister, '/register')
-api.add_resource(User, '/user/<string:email>')
+api.add_resource(User, '/user/<int:id>')
 api.add_resource(UserLogin, '/login')
 api.add_resource(Teste, '/teste')
 
