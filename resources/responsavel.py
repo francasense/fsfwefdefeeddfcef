@@ -95,7 +95,7 @@ class ResponsavelDelete(Resource):
         responsavel = ResponsavelModel.find_by_id_unique(id)
 
         if responsavel:
-            dependente.name = data['name']
+            responsavel.name = data['name']
             responsavel.telefone = data['telefone']
             responsavel.cpf = data['cpf']
             responsavel.msg = data['msg']
