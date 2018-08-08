@@ -20,6 +20,11 @@ _user_parser.add_argument('tipo',
                           required=True,
                           help="This field cannot be blank."
                           )
+_user_parser.add_argument('msg',
+                          #type=int,
+                          required=True,
+                          help="This field cannot be left blank!"
+                          )
 _user_parser.add_argument('telefone',
                           type=str,
                           required=True,
@@ -95,7 +100,8 @@ class UserLogin(Resource):
                 'refresh_token': refresh_token,
                 'username': user.username,
                 'id_user': user.id,
-               'message': 'dsfsdfsdf'
+               'message': 'dsfsdfsdf',
+              'msg': 'ok'
             }, 200
 
         return {"message": "Invalid Credentials!"}, 401
