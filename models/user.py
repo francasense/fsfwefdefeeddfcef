@@ -13,12 +13,13 @@ class UserModel(db.Model):
     tipo = db.Column(db.String(100))
     #endereco = db.Column(db.String(120))
     promocao = db.Column(db.String(10))
+    msg = db.Column(db.String(2))
 
-
-    def __init__(self, cpf, username, password, email, telefone, tipo, promocao):
+    def __init__(self, cpf, username, msg, password, email, telefone, tipo, promocao):
     #def __init__(self, cpf, username, password, email, telefone, tipo, endereco, promocao):
 
         self.cpf = cpf
+        self.msg = msg
         self.username = username
         self.password = password
         self.email = email
@@ -29,6 +30,8 @@ class UserModel(db.Model):
 
     def json(self):
         return {
+            'id': self.id,
+            'msg':self.msg,
             'id': self.id,
             'cpf': self.cpf,
             'username': self.username,
