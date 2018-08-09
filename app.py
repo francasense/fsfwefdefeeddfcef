@@ -24,12 +24,17 @@ jwt = JWTManager(app)
 `claims` are data we choose to attach to each jwt payload
 and for each jwt protected endpoint, we can retrieve these claims via `get_jwt_claims()`
 one possible use case for claims are access level control, which is shown below.
-"""
+
 @jwt.user_claims_loader
 def add_claims_to_jwt(identity):  # Remember identity is what we define when creating the access token
     if identity == 1:   # instead of hard-coding, we should read from a config file or database to get a list of admins instead
         return {'is_admin': True}
     return {'is_admin': False}
+"""
+
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 #@jwt.expired_token_loader
 #def expired_token_callback():
