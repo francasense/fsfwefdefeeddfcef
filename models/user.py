@@ -15,30 +15,28 @@ class UserModel(db.Model):
     promocao = db.Column(db.String(10))
     msg = db.Column(db.String(2))
 
+
     def __init__(self, cpf, username, msg, password, email, telefone, tipo, promocao):
     #def __init__(self, cpf, username, password, email, telefone, tipo, endereco, promocao):
 
         self.cpf = cpf
-        self.msg = msg
         self.username = username
         self.password = password
         self.email = email
         self.telefone = telefone
         self.tipo = tipo
-       # self.endereco = endereco
+        self.msg = msg
         self.promocao = promocao
 
     def json(self):
         return {
-            'id': self.id,
-            'msg':self.msg,
             'id': self.id,
             'cpf': self.cpf,
             'username': self.username,
             'tipo': self.tipo,
             'email': self.email,
             'telefone': self.telefone,
-            #'endereco': self.endereco,
+            'msg': self.msg,
             'promocao': self.promocao
         }
 
@@ -53,11 +51,11 @@ class UserModel(db.Model):
     @classmethod
     def find_by_username(cls, username):
         return cls.query.filter_by(username=username).first()
-    
+
     @classmethod
     def find_by_email(cls, email):
         return cls.query.filter_by(email=email).first()
-    
+
     @classmethod
-    def find_by_id(cls, id):
-        return cls.query.filter_by(id=id).first()
+    def find_by_id(cls, _id):
+        return cls.query.filter_by(id=_id).first()
