@@ -79,6 +79,28 @@ class User(Resource):
         return {'message': 'User deleted.'}, 200
 
 
+    @jwt_required
+    def put(self, id: int):
+        data = _user_parser.parse_args()
+
+        user = UserModel.find_by_id(id)
+
+        if user:
+            user.username = data['username']
+            user.password = data['password']
+            user.email = data['email']
+            user.telefone = data['telefone']
+            user.cpf = data['cpf']
+            user.msg = data['msg']
+            user.promocao = data['promocao']
+        else:
+            user = UserModel(id, **data)
+
+        user.save_to_db()
+
+        return user.json()
+      
+
 class UserLogin(Resource):
     def post(self):
         data = _user_parser.parse_args()
