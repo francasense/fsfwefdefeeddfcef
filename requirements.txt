@@ -1,8 +1,0 @@
-Flask
-Flask-RESTful
-Flask-JWT
-Flask-JWT-Extended
-Flask-SQLAlchemy
-psycopg2
-uwsgi
-
