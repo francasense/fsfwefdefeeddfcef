@@ -14,11 +14,13 @@ from resources.teste import Teste
 app = Flask(__name__)
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('postgres://ekgznjyknrrepu:efd0b2e280437c4dd5ba5d7aaa0cff2f40221dae42eae81cbc460c67b4fbc3bf@ec2-54-83-13-119.compute-1.amazonaws.com:5432/dcp3rbfue209db','sqlite:///data.db')
+#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('postgres://ekgznjyknrrepu:efd0b2e280437c4dd5ba5d7aaa0cff2f40221dae42eae81cbc460c67b4fbc3bf@ec2-54-83-13-119.compute-1.amazonaws.com:5432/dcp3rbfue209db','sqlite:///data.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('URI','sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.secret_key = 'egfrdfsre'  # could do app.config['JWT_SECRET_KEY'] if we prefer
 api = Api(app)
+
 
 
 jwt = JWTManager(app)
