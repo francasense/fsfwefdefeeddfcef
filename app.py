@@ -13,7 +13,18 @@ from resources.endereco import Endereco, EnderecoList, EnderecoSelecao, Endereco
 from resources.teste import Teste
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
+
+POSTGRES = {
+    'user': 'ekgznjyknrrepu',
+    'pw': 'efd0b2e280437c4dd5ba5d7aaa0cff2f40221dae42eae81cbc460c67b4fbc3bf',
+    'db': 'dcp3rbfue209db',
+    'host': 'ec2-54-83-13-119.compute-1.amazonaws.com',
+    'port': '5432',
+}
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
+%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
+
+#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.secret_key = 'egfrdfsre'  # could do app.config['JWT_SECRET_KEY'] if we prefer
