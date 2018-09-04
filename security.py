@@ -11,3 +11,7 @@ def authenticate(username, password):
 def identity(payload):
     user_id = payload['identity']
     return UserModel.find_by_id(user_id)
+
+def identity2(payload):
+    user_id = payload['identity2']
+    return UserModel.find_by_email(user_id)
