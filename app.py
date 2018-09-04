@@ -4,6 +4,8 @@ from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
 from db import db
+
+from resources.osseca import TempLogin
 from resources.user import UserRegister, User, UserLogin, TokenRefresh
 from resources.dependente import Dependente, DependenteList, DependenteSelecao, DependenteDelete
 from resources.controle import Controle, ControleList, ControleSelecao
@@ -44,6 +46,8 @@ def create_tables():
   #      'message': 'The token has expired.',
    #     'error': 'token_expired'
     #}), 401
+
+api.add_resource(TempLogin, '/templogin')
 
 api.add_resource(Responsavel, '/responsavel/<string:name>')
 api.add_resource(ResponsavelList, '/responsavels')
