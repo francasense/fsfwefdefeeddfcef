@@ -46,6 +46,7 @@ _user_parser.add_argument('promocao',
                           help="This field cannot be blank."
                           )
 class UserRegister(Resource):
+    @jwt_required
     def post(self):
         data = _user_parser.parse_args()
 
