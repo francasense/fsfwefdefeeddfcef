@@ -14,7 +14,7 @@ class TempLogin(Resource):
         data = _user_parser.parse_args()
 
         if UserModel.find_by_email(data['email']):
-            return {"message": "A user with that email already exists", "st":"2"}, 400
+            return {"message": "Já existe esse Email cadastrado", "st":"2"}, 400
 
         access_token = create_access_token(identity=data['email'], fresh=True)
         return {'access_token': access_token}, 201
