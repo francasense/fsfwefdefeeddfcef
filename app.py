@@ -34,9 +34,9 @@ def add_claims_to_jwt(identity):  # Remember identity is what we define when cre
     return {'is_admin': False}
 """
 
-#@app.before_first_request
-#def create_tables():
-#    db.create_all()
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 #@jwt.expired_token_loader
 #def expired_token_callback():
