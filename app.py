@@ -4,7 +4,6 @@ from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
 from db import db
-
 from resources.osseca import TempLogin
 from resources.user import UserRegister, User, UserLogin, TokenRefresh
 from resources.dependente import Dependente, DependenteList, DependenteSelecao, DependenteDelete
@@ -35,9 +34,9 @@ def add_claims_to_jwt(identity):  # Remember identity is what we define when cre
     return {'is_admin': False}
 """
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
+#@app.before_first_request
+#def create_tables():
+#    db.create_all()
 
 #@jwt.expired_token_loader
 #def expired_token_callback():
@@ -46,7 +45,6 @@ def create_tables():
   #      'message': 'The token has expired.',
    #     'error': 'token_expired'
     #}), 401
-
 api.add_resource(TempLogin, '/templogin')
 
 api.add_resource(Responsavel, '/responsavel/<string:name>')

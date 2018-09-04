@@ -45,6 +45,7 @@ _user_parser.add_argument('promocao',
                           required=True,
                           help="This field cannot be blank."
                           )
+
 class UserRegister(Resource):
     @jwt_required
     def post(self):
@@ -100,7 +101,7 @@ class User(Resource):
         user.save_to_db()
 
         return user.json()
-      
+
 
 class UserLogin(Resource):
     def post(self):
