@@ -3,7 +3,6 @@ from flask import Flask
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
-from db import db
 from resources.osseca import TempLogin
 from resources.user import UserRegister, User, UserLogin, TokenRefresh
 from resources.dependente import Dependente, DependenteList, DependenteSelecao, DependenteDelete
@@ -21,10 +20,11 @@ POSTGRES = {
     'host': 'ec2-54-83-13-119.compute-1.amazonaws.com',
     'port': '5432',
 }
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
-%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
+#%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 
-#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('postgresql://%(user)s:\
+%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES, 'sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.secret_key = 'egfrdfsre'  # could do app.config['JWT_SECRET_KEY'] if we prefer
