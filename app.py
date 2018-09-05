@@ -2,6 +2,7 @@ import os
 from flask import Flask
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
+from db import db
 
 from resources.osseca import TempLogin
 from resources.user import UserRegister, User, UserLogin, TokenRefresh
