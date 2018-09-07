@@ -1,11 +1,12 @@
 from db import db
 #import datetime
-from datetime import datetime
+#from datetime import datetime
 #from sqlalchemy import Column, Integer, DateTime
 #from sqlalchemy.sql import func
 
 
 class UsertempModel(db.Model):
+    __tablename__ = 'usertemps'
 
     id = db.Column(db.Integer, primary_key=True)
     cpf = db.Column(db.String(11))
