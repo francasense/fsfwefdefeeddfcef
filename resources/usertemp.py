@@ -71,18 +71,18 @@ class Operacao(Resource):
     def get(cls, id): 
         usertemp = UsertempModel.find_by_id(id)
         
-        user_cpf = usertemp.cpf
-        user_username = usertemp.username
-        user_email = usertemp.email
-        user_telefone = usertemp.telefone
-        user_tipo = usertemp.tipo
-        user_promocao = usertemp.promocao
-        user_msg = usertemp.msg
-        user_password = usertemp.password
+        user_cpf = usertemp['cpf']
+        user_username = usertemp['username']
+        user_email = usertemp['email']
+        user_telefone = usertemp['telefone']
+        user_tipo = usertemp['tipo']
+        user_promocao = usertemp['promocao'] 
+        user_msg = usertemp['msg'] 
+        user_password = usertemp['password'] 
         
-        user = UserModel(user_cpf, user_username, user_telefone, user_tipo, user_promocao, user_msg, user_password, user_email)
-        user.save_to_db()
-        return {"message": "User created successfully.", "st":usertemp.username}, 201
+        #user = UserModel(user_cpf, user_username, user_telefone, user_tipo, user_promocao, user_msg, user_password, user_email)
+        #user.save_to_db()
+        return {"message": "User created successfully.", "st":user_cpf}, 201
 
         
 
