@@ -83,7 +83,7 @@ class Operacao(Resource):
         
         #user = UserModel(user_cpf.cpf, user_username.username, user_email.email, user_telefone.telefone, user_tipo.tipo, user_promocao.promocao, user_msg.msg, user_password.password)
         #user.save_to_db()
-        return {"message": "User created successfully.", "st":usertemp}, 201
+        return {"message": "User created successfully.", "st":usertemp.password}, 201
 
         
 
