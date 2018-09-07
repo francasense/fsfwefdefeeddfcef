@@ -72,9 +72,10 @@ class Operacao(Resource):
         usertemp = UsertempModel.find_by_id(id)
 
         #user = UserModel(usertemp.json())
-        user = UserModel(usertemp.cpf, usertemp.username, usertemp.password, usertemp.email, usertemp.telefone, usertemp.tipo,  usertemp.promocao, usertemp.msg)
+        user = UserModel(usertemp.cpf, usertemp.username, usertemp.email, usertemp.telefone, usertemp.tipo, usertemp.promocao, usertemp.msg, usertemp.password)
         user.save_to_db()
 
+        #[parameters: {'cpf': '342543423', 'username': 'junior', 'password': 'teste334@gmail.com', 'email': '42342343', 'telefone': 'usuario_comum', 'tipo': 'promocao', 'promocao': 'ok', 'msg': 'senha'}]
         return {"message": "User created successfully.", "st":usertemp.username}, 201
 
         
