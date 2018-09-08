@@ -2,6 +2,7 @@ from db import db
 
 
 class UsertempModel(db.Model):
+    __tablename__ = 'userstemp'
 
     id = db.Column(db.Integer, primary_key=True)
     cpf = db.Column(db.String(11))
