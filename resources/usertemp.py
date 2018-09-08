@@ -3,6 +3,7 @@ from werkzeug.security import safe_str_cmp
 from flask_jwt_extended import create_access_token, jwt_required, create_refresh_token, jwt_refresh_token_required, get_jwt_identity
 from models.usertemp import UsertempModel
 from models.user import UserModel
+from flask import Flask, json
 
 
 _user_parser = reqparse.RequestParser()
@@ -68,23 +69,24 @@ class UserRegisterTemp(Resource):
 
 class Operacao(Resource):
     @jwt_required
-    def get(cls, id): 
+    def get(cls, id):
         usertemp = UsertempModel.find_by_id(id)
-        
-        user_cpf = usertemp['cpf']
-        user_username = usertemp['username']
-        user_email = usertemp['email']
-        user_telefone = usertemp['telefone']
-        user_tipo = usertemp['tipo']
-        user_promocao = usertemp['promocao'] 
-        user_msg = usertemp['msg'] 
-        user_password = usertemp['password'] 
-        
-        #user = UserModel(user_cpf, user_username, user_telefone, user_tipo, user_promocao, user_msg, user_password, user_email)
-        #user.save_to_db()
-        return {"message": "User created successfully.", "st":user_cpf}, 201
 
-        
+        datas = usertemp.json()
+        #datas = ('cpf':datas['cpf'])
+
+        #user = UserModel(**data)    name=data['name'
+        #datas = {"cpf": usertemp.cpf, "username":usertemp.username, "email":usertemp.email, "telefone":usertemp.telefone, "tipo":usertemp.tipo, "promocao":usertemp.promocao, "msg":usertemp.msg, "password":usertemp.password}
+
+        user = UserModel(cpf=datas['cpf'],username=datas['username'],email=datas['email'],telefone=datas['telefone'],tipo=datas['tipo'],promocao=datas['promocao'],msg=datas['msg'],password=datas['password'])
+
+        #user = UserModel(datas['cpf'], datas['username'], datas['email'], datas['telefone'], datas['tipo'], datas['promocao'], datas['msg'], datas['password'])
+
+        user.save_to_db()
+
+        #user = UsertempModel(user_cpf, user_username, user_telefone, user_tipo, user_promocao, user_msg, user_password, user_email)
+        return {"message": "User created successfully.", "username": usertemp.username, "st":"1"}, 201
+
 
 class UserTemp(Resource):
     """
