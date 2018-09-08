@@ -4,6 +4,7 @@ from flask_jwt_extended import create_access_token, jwt_required, create_refresh
 from models.usertemp import UsertempModel
 from models.user import UserModel
 from flask import Flask, json
+import time
 
 
 _user_parser = reqparse.RequestParser()
@@ -83,6 +84,8 @@ class Operacao(Resource):
         #user = UserModel(datas['cpf'], datas['username'], datas['email'], datas['telefone'], datas['tipo'], datas['promocao'], datas['msg'], datas['password'])
 
         user.save_to_db()
+        time.sleep(2)
+        usertemp.delete_from_db()
 
         #user = UsertempModel(user_cpf, user_username, user_telefone, user_tipo, user_promocao, user_msg, user_password, user_email)
         return {"message": "User created successfully.", "username": usertemp.username, "st":"1"}, 201
