@@ -54,17 +54,30 @@ _user_parser.add_argument('promocao',
 class UserRegisterTemp(Resource):
     #@jwt_required
     def post(self):
-        data = _user_parser.parse_args()
-        if UserModel.find_by_email(data['email']):
-            return {"message": "A user with that email already exists", "st":"2"}, 400
-        else:
-            data = _user_parser.parse_args()
+      data = _user_parser.parse_args()
 
-            usertemp = UsertempModel(**data)
-            usertemp.save_to_db()
+      usertemp = UsertempModel(**data)
+      usertemp.save_to_db()
 
-            access_token = create_access_token(identity=data['email'], fresh=True)
-            return {"message": "User created successfully.",'access_token': access_token, 'id': usertemp.id, "st":"1"}, 201
+      access_token = create_access_token(identity=data['email'], fresh=True)
+      return {"message": "User created successfully.",'access_token': access_token, 'id': usertemp.id, "st":"1"}, 201
+      
+      
+      
+      
+      
+      
+        #data = _user_parser.parse_args()
+        #if UserModel.find_by_email(data['email']):
+         #   return {"message": "A user with that email already exists", "st":"2"}, 400
+        #else:
+         #   data = _user_parser.parse_args()
+
+          #  usertemp = UsertempModel(**data)
+           # usertemp.save_to_db()
+
+            #access_token = create_access_token(identity=data['email'], fresh=True)
+            #return {"message": "User created successfully.",'access_token': access_token, 'id': usertemp.id, "st":"1"}, 201
 
 
 class Operacao(Resource):
