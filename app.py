@@ -57,7 +57,7 @@ def create_tables():
   #      'message': 'The token has expired.',
    #     'error': 'token_expired'
     #}), 401
-api.add_resource(TempLogin, '/templogin')
+#api.add_resource(TempLogin, '/templogin')
 
 api.add_resource(Responsavel, '/responsavel/<string:name>')
 api.add_resource(ResponsavelList, '/responsavels')
