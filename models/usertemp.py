@@ -1,12 +1,7 @@
 from db import db
-#import datetime
-#from datetime import datetime
-#from sqlalchemy import Column, Integer, DateTime
-#from sqlalchemy.sql import func
 
 
 class UsertempModel(db.Model):
-    __tablename__ = 'usertemps'
 
     id = db.Column(db.Integer, primary_key=True)
     cpf = db.Column(db.String(11))
@@ -18,10 +13,8 @@ class UsertempModel(db.Model):
     #endereco = db.Column(db.String(120))
     promocao = db.Column(db.String(10))
     msg = db.Column(db.String(2))
-    #Registered = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     def __init__(self, cpf, username, msg, password, email, telefone, tipo, promocao):
-    #def __init__(self, cpf, username, password, email, telefone, tipo, endereco, promocao):
 
         self.cpf = cpf
         self.username = username
@@ -43,7 +36,7 @@ class UsertempModel(db.Model):
             'telefone': self.telefone,
             'msg': self.msg,
             'promocao': self.promocao,
-            #'Registered': datetime.date.today()
+            'password': self.password
         }
 
     def save_to_db(self):
