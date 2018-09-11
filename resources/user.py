@@ -8,43 +8,43 @@ _user_parser = reqparse.RequestParser()
 _user_parser.add_argument('username',
                           type=str,
                           required=True,
-                          help="This field cannot be blank."
+                          help="O campo não pode esta vazio!"
                           )
 _user_parser.add_argument('password',
                           type=str,
                           required=True,
-                          help="This field cannot be blank."
+                          help="O campo não pode esta vazio!"
                           )# tipo, endereco, promocao telefone
 _user_parser.add_argument('tipo',
                           type=str,
                           required=True,
-                          help="This field cannot be blank."
+                          help="O campo não pode esta vazio!"
                           )
 _user_parser.add_argument('telefone',
                           type=str,
                           required=True,
-                          help="This field cannot be blank."
+                          help="O campo não pode esta vazio!"
                           )
 _user_parser.add_argument('cpf',
                           type=str,
                           #type=int,
                           required=True,
-                          help="This field cannot be blank."
+                          help="O campo não pode esta vazio!"
                           )
 _user_parser.add_argument('email',
                           type=str,
                           required=True,
-                          help="This field cannot be blank."
+                          help="O campo não pode esta vazio!"
                           )
 _user_parser.add_argument('msg',
                           type=str,
                           required=True,
-                          help="This field cannot be blank."
+                          help="O campo não pode esta vazio!"
                           )
 _user_parser.add_argument('promocao',
                           type=str,
                           required=True,
-                          help="This field cannot be blank."
+                          help="O campo não pode esta vazio!"
                           )
 
 class UserRegister(Resource):
@@ -58,7 +58,7 @@ class UserRegister(Resource):
         user = UserModel(**data)
         user.save_to_db()
 
-        return {"message": "User created successfully.", "st":"1"}, 201
+        return {"message": "Usuário cadastrado com sucesso", "st":"1"}, 201
 
 
 class User(Resource):
@@ -101,8 +101,8 @@ class User(Resource):
 
         user.save_to_db()
 
-        return user.json()
-
+        return (user.json(), {'message': 'Usuário alterado com Sucesso', 'st':'1'}), 201
+      
 
 class UserLogin(Resource):
     def post(self):
@@ -125,7 +125,7 @@ class UserLogin(Resource):
                 'st':'1'
             }, 200
 
-        return {"message": "Invalid Credentials!"}, 401
+        return {"message": "Usuário ou senha inválido!"}, 401
 
 
 class TokenRefresh(Resource):
