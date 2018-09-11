@@ -44,8 +44,9 @@ class Dependente(Resource):
         try:
             dependente.save_to_db()
         except:
-            return {"message": "Erro ao tentar inserir dados"}, 500
-        return dependente.json(), 201
+            return {"message": "Erro ao tentar inserir dados", "st":"2"}, 500
+        
+        return (dependente.json(), {'message': 'Nino Cadastrado com Sucesso', 'st':'1'}), 201
 
 
 """
@@ -83,7 +84,7 @@ class DependenteDelete(Resource):
     parser.add_argument('msg',
                         #type=int,
                         required=True,
-                        help="This field cannot be left blank!"
+                        help="O campo não pode esta vazio!"
                         )
     parser.add_argument('alergia',
                         #type=int,
@@ -93,7 +94,7 @@ class DependenteDelete(Resource):
     parser.add_argument('user_id',
                         type=int,
                         required=True,
-                        help="This field cannot be left blank!"
+                        help="O campo não pode esta vazio!"
                         )
     @jwt_required
     #@classmethod
@@ -120,15 +121,14 @@ class DependenteDelete(Resource):
             dependente = DependenteModel(id, **data)
 
         dependente.save_to_db()
-
-        return dependente.json()
+        return (dependente.json(), {'message': 'Nino Alterado com Sucesso', 'st':'1'}), 201
     
     @jwt_required  # No longer needs brackets
     def get(self, id: int):
         dependente = DependenteModel.find_by_id_unique(id)
         if dependente:
             return dependente.json()
-        return {'message': 'Dependente not found'}, 404
+        return {'message': 'Nino não encontrado'}, 404
 
 
 class DependenteList(Resource):
