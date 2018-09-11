@@ -35,8 +35,8 @@ class Responsavel(Resource):
 
     @jwt_required
     def post(self, name):
-        if ResponsavelModel.find_by_name(name):
-            return {'message': "An responsavel with name '{}' already exists.".format(name)}, 400
+        #if ResponsavelModel.find_by_name(name):
+        #    return {'message': "An responsavel with name '{}' already exists.".format(name), "st":"2"}, 400
 
         data = Responsavel.parser.parse_args()
 
@@ -45,9 +45,9 @@ class Responsavel(Resource):
         try:
             responsavel.save_to_db()
         except:
-            return {"message": "An error occurred inserting the responsavel."}, 500
+            return {"message": "An error occurred inserting the responsavel.", "st":"2"}, 500
 
-        return (responsavel.json(), {'message': 'Responsavel not found.'}), 201
+        return (responsavel.json(), {'message': 'Responsavel not found.', 'st':'1'}), 201
 
 
 
