@@ -8,22 +8,22 @@ class Responsavel(Resource):
     parser.add_argument('telefone',
                         #type=int,
                         required=True,
-                        help="This field cannot be left blank!"
+                        help="O campo não pode esta vazio!"
                         )
     parser.add_argument('cpf',
                         #type=int,
                         required=True,
-                        help="This field cannot be left blank!"
+                        help="O campo não pode esta vazio!"
                         )
     parser.add_argument('msg',
                         #type=int,
                         required=True,
-                        help="This field cannot be left blank!"
+                        help="O campo não pode esta vazio!"
                         )
     parser.add_argument('user_id',
                         type=int,
                         required=True,
-                        help="Every responsavel needs a user_id."
+                        help="O campo não pode esta vazio!"
                         )
 
     @jwt_required  # No longer needs brackets
@@ -45,9 +45,9 @@ class Responsavel(Resource):
         try:
             responsavel.save_to_db()
         except:
-            return {"message": "An error occurred inserting the responsavel.", "st":"2"}, 500
+            return {"message": "Erro ao tentar enviar os dados", "st":"2"}, 500
 
-        return (responsavel.json(), {'message': 'Responsavel not found.', 'st':'1'}), 201
+        return (responsavel.json(), {'message': 'Responsável cadastrado com sucesso', 'st':'1'}), 201
 
 
 
@@ -66,7 +66,7 @@ class ResponsavelDelete(Resource):
     parser.add_argument('msg',
                         #type=int,
                         required=True,
-                        help="This field cannot be left blank!"
+                        help="O campo não pode esta vazio!"
                         )
     parser.add_argument('cpf',
                         #type=int,
@@ -76,7 +76,7 @@ class ResponsavelDelete(Resource):
     parser.add_argument('user_id',
                         type=int,
                         required=True,
-                        help="Every responsavel needs a user_id."
+                        help="O campo não pode esta vazio!"
                         )
 
     @jwt_required
@@ -105,7 +105,7 @@ class ResponsavelDelete(Resource):
 
         responsavel.save_to_db()
 
-        return responsavel.json()
+        return (responsavel.json(), {'message': 'Responsável alterado com sucesso', 'st':'1'}), 201
     
     @jwt_required  # No longer needs brackets
     def get(self, id: int):
