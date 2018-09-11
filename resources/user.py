@@ -121,7 +121,8 @@ class UserLogin(Resource):
                 'username': user.username,
                 'id_user': user.id,
                 'message': 'dsfsdfsdf',
-                'msg': 'ok'
+                'msg': 'ok',
+                'st':'1'
             }, 200
 
         return {"message": "Invalid Credentials!"}, 401
