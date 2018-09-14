@@ -1,10 +1,10 @@
 from db import db
 
 class ControleModel(db.Model):
-    __tablename__ = 'controles'
+    __tablename__ = 'controle'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
+    estabelecimento = db.Column(db.String(100))
     responsavel = db.Column(db.String(100))
     dependente = db.Column(db.String(100))
     mensagem = db.Column(db.String(100))
@@ -15,8 +15,8 @@ class ControleModel(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('UserModel')
 
-    def __init__(self, name, responsavel, dependente, mensagem , status, hora_inicial, hora_final, user_id):
-        self.name = name
+    def __init__(self, estabelecimento, responsavel, dependente, mensagem , status, hora_inicial, hora_final, user_id):
+        self.estabelecimento = estabelecimento
         self.dependente = dependente
         self.responsavel = responsavel
         self.mensagem = mensagem
@@ -28,7 +28,7 @@ class ControleModel(db.Model):
     def json(self):
         return {
             'id': self.id,
-            'name': self.name,
+            'estabelecimento': self.estabelecimento,
             'dependente': self.dependente,
             'responsavel': self.responsavel,
             'mensagem': self.mensagem,
@@ -39,8 +39,8 @@ class ControleModel(db.Model):
         }
 
     @classmethod
-    def find_by_name(cls, name):
-        return cls.query.filter_by(name=name).first()
+    def find_by_name(cls, estabelecimento):
+        return cls.query.filter_by(estabelecimento=estabelecimento).first()
 
     @classmethod
     def find_by_id(cls, _id):
