@@ -55,8 +55,8 @@ class Controle(Resource):
 
     @jwt_required
     def post(self, estabelecimento):
-        if ControleModel.find_by_name(estabelecimento):
-            return {'message': "O estabelecimento '{}' já existe.".format(estabelecimento)}, 400
+        #if ControleModel.find_by_name(estabelecimento):
+         #   return {'message': "O estabelecimento '{}' já existe.".format(estabelecimento)}, 400
         user_id = get_jwt_identity()
         #user_id = userID
         data = Controle.parser.parse_args()
