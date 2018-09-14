@@ -5,7 +5,7 @@ from models.controle import ControleModel
 
 class Controle(Resource):
     parser = reqparse.RequestParser()
-    parser.add_argument('name',
+    parser.add_argument('estabelecimento',
                         type=str,
                         required=True,
                         help="This field cannot be left blank!"
@@ -47,22 +47,22 @@ class Controle(Resource):
                         #)
 
     @jwt_required  # No longer needs brackets
-    def get(self, name):
-        controle = ControleModel.find_by_name(name)
+    def get(self, estabelecimento):
+        controle = ControleModel.find_by_name(estabelecimento)
         if controle:
             return controle.json()
         return {'message': 'Controle not found'}, 404
 
     @jwt_required
-    def post(self, name):
-        #if ControleModel.find_by_name(name):
-            #return {'message': "An controle with name '{}' already exists.".format(name)}, 400
+    def post(self, estabelecimento):
+        if ControleModel.find_by_name(estabelecimento):
+            return {'message': "O estabelecimento '{}' já existe.".format(estabelecimento)}, 400
         user_id = get_jwt_identity()
         #user_id = userID
         data = Controle.parser.parse_args()
 
         controle = ControleModel(
-        name,
+        estabelecimento,
         data['dependente'],
         data['responsavel'],
         data['mensagem'],
@@ -76,29 +76,29 @@ class Controle(Resource):
         try:
             controle.save_to_db()
         except:
-            return {"message": "An error occurred inserting the controle."}, 500
-
-        return controle.json(), 201
+            return {"message": "Erro ao tentar enviar os dados", "st":"2"}, 500
+            
+        return (controle.json(), {'message': 'Controle cadastrado com sucesso', 'st':'1'}), 201
 
     @jwt_required
-    def delete(self, name):
+    def delete(self, estabelecimento):
         #claims = get_jwt_claims()
         #if not claims['is_admin']:
         #    return {'message': 'Admin privilege required.'}, 401
 
-        controle = ControleModel.find_by_name(name)
+        controle = ControleModel.find_by_name(estabelecimento)
         if controle:
             controle.delete_from_db()
-            return {'message': 'Controle deleted.'}
-        return {'message': 'Controle not found.'}, 404
+            return {'message': 'Controle deletado.'}
+        return {'message': 'Controle não encontrado.'}, 404
 
     @jwt_required
-    def put(self, name):
+    def put(self, estabelecimento):
         data = Controle.parser.parse_args()
         user_id = get_jwt_identity()
-        controle = ControleModel.find_by_name(name)
+        controle = ControleModel.find_by_name(estabelecimento)
         if controle:
-            controle.name = name
+            controle.name = estabelecimento
             controle.dependente = data['dependente']
             controle.responsavel = data['responsavel']
             controle.mensagem = data['mensagem']
@@ -106,12 +106,10 @@ class Controle(Resource):
             controle.hora_inicial = data['hora_inicial']
             controle.hora_final = data['hora_final']
             controle.user_id = user_id
-
-
         else:
             #controle = ControleModel(name, user_id, **data)
             controle = ControleModel(
-            name,
+            estabelecimento,
             data['dependente'],
             data['responsavel'],
             data['mensagem'],
@@ -122,9 +120,8 @@ class Controle(Resource):
             )
 
         controle.save_to_db()
-
-        return controle.json()
-
+        
+        return (controle.json(), {'message': 'Controle alterado com sucesso', 'st':'1'}), 201
 
 class ControleList(Resource):
     @jwt_required
@@ -135,7 +132,7 @@ class ControleList(Resource):
         if user_id:
             return {'controles': controles}, 200
         return {
-            'controles': [controle['name'] for controle in controles],
+            'controles': [controle['estabelecimento'] for controle in controles],
             'message': 'More data available if you log in.'
         }, 200
 
@@ -149,6 +146,6 @@ class ControleSelecao(Resource):
         if user_id:
             return {'controles': controles}, 200
         return {
-            'controles': [controle['name'] for controle in controles],
+            'controles': [controle['estabelecimento'] for controle in controles],
             'message': 'More data available if you log in.'
         }, 200
