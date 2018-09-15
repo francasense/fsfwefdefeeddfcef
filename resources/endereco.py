@@ -106,16 +106,16 @@ class EnderecoDelete(Resource):
                         required=True,
                         help="Every endereco needs a user_id."
                         )
-    
+
     @jwt_required
     def delete(self, id):
-        
+
         endereco = EnderecoModel.find_by_id_unique(id)
         if endereco:
             endereco.delete_from_db()
             return {'message': 'Endereco deleted.'}
         return {'message': 'Endereco not found.'}, 404
-
+    @jwt_required
     def put(self, id: int):
         data = EnderecoDelete.parser.parse_args()
 

@@ -10,6 +10,11 @@ class Controle(Resource):
                         required=True,
                         help="This field cannot be left blank!"
                         )
+    parser.add_argument('usuario',
+                        type=str,
+                        required=True,
+                        help="This field cannot be left blank!"
+                        )
     parser.add_argument('responsavel',
                         type=str,
                         required=True,
@@ -64,6 +69,7 @@ class Controle(Resource):
         controle = ControleModel(
         estabelecimento,
         data['dependente'],
+        data['usuario'],
         data['responsavel'],
         data['mensagem'],
         data['status'],
@@ -77,7 +83,7 @@ class Controle(Resource):
             controle.save_to_db()
         except:
             return {"message": "Erro ao tentar enviar os dados", "st":"2"}, 500
-            
+
         return (controle.json(), {'message': 'Controle cadastrado com sucesso', 'st':'1'}), 201
 
     @jwt_required
@@ -100,6 +106,7 @@ class Controle(Resource):
         if controle:
             controle.name = estabelecimento
             controle.dependente = data['dependente']
+            controle.usuario = data['usuario']
             controle.responsavel = data['responsavel']
             controle.mensagem = data['mensagem']
             controle.status = data['status']
@@ -110,6 +117,7 @@ class Controle(Resource):
             #controle = ControleModel(name, user_id, **data)
             controle = ControleModel(
             estabelecimento,
+            data['usuario'],
             data['dependente'],
             data['responsavel'],
             data['mensagem'],
@@ -120,7 +128,7 @@ class Controle(Resource):
             )
 
         controle.save_to_db()
-        
+
         return (controle.json(), {'message': 'Controle alterado com sucesso', 'st':'1'}), 201
 
 class ControleList(Resource):

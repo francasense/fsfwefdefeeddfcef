@@ -1,8 +1,8 @@
 from db import db
 
 
-class UserModel(db.Model):
-    __tablename__ = 'users'
+class GestorModel(db.Model):
+    __tablename__ = 'gestores'
 
     id = db.Column(db.Integer, primary_key=True)
     cpf = db.Column(db.String(11), unique=True)
@@ -11,13 +11,12 @@ class UserModel(db.Model):
     email = db.Column(db.String(100), unique=True)
     telefone = db.Column(db.String(30))
     tipo = db.Column(db.String(100))
-    #endereco = db.Column(db.String(120))
-    promocao = db.Column(db.String(10))
+    empresa = db.Column(db.String(10))
     msg = db.Column(db.String(2))
 
 
-    def __init__(self, cpf, username, msg, password, email, telefone, tipo, promocao):
-    #def __init__(self, cpf, username, password, email, telefone, tipo, endereco, promocao):
+    def __init__(self, cpf, username, msg, password, email, telefone, tipo, empresa):
+    #def __init__(self, cpf, username, password, email, telefone, tipo, endereco, empresa):
 
         self.cpf = cpf
         self.username = username
@@ -26,7 +25,7 @@ class UserModel(db.Model):
         self.telefone = telefone
         self.tipo = tipo
         self.msg = msg
-        self.promocao = promocao
+        self.empresa = empresa
 
     def json(self):
         return {
@@ -37,7 +36,7 @@ class UserModel(db.Model):
             'email': self.email,
             'telefone': self.telefone,
             'msg': self.msg,
-            'promocao': self.promocao
+            'empresa': self.empresa
         }
 
     def save_to_db(self):

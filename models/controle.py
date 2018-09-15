@@ -5,6 +5,7 @@ class ControleModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     estabelecimento = db.Column(db.String(100))
+    usuario = db.Column(db.String(100))
     responsavel = db.Column(db.String(100))
     dependente = db.Column(db.String(100))
     mensagem = db.Column(db.String(100))
@@ -15,8 +16,9 @@ class ControleModel(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('UserModel')
 
-    def __init__(self, estabelecimento, responsavel, dependente, mensagem , status, hora_inicial, hora_final, user_id):
+    def __init__(self, estabelecimento, usuario, responsavel, dependente, mensagem , status, hora_inicial, hora_final, user_id):
         self.estabelecimento = estabelecimento
+        self.usuario = usuario
         self.dependente = dependente
         self.responsavel = responsavel
         self.mensagem = mensagem
@@ -29,6 +31,7 @@ class ControleModel(db.Model):
         return {
             'id': self.id,
             'estabelecimento': self.estabelecimento,
+            'usuario': self.usuario,
             'dependente': self.dependente,
             'responsavel': self.responsavel,
             'mensagem': self.mensagem,
