@@ -6,7 +6,7 @@ from flask_jwt_extended import JWTManager
 
 
 from resources.osseca import TempLogin
-from resources.gestor import GestorRegister, Gestor
+from resources.gestor import GestorRegister, GestorLogin
 from resources.estabelecimento import Estabelecimento, EstabelecimentoSelecao
 from resources.usertemp import UserRegisterTemp, UserTemp, Operacao
 from resources.user import UserRegister, User, UserLogin, TokenRefresh
@@ -91,6 +91,7 @@ api.add_resource(Teste, '/teste')
 
 api.add_resource(GestorRegister, '/gestorregister')
 api.add_resource(Gestor, '/gestor/<int:id>')
+api.add_resource(GestorLogin, '/gestorlogin')
 
 api.add_resource(Estabelecimento, '/estabelecimento')
 api.add_resource(EstabelecimentoSelecao, '/estabelecimentoselecao/')
