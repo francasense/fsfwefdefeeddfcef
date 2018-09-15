@@ -121,6 +121,7 @@ class GestorLogin(Resource):
                 'refresh_token': refresh_token,
                 'username': gestor.username,
                 'id_gestor': gestor.id,
+                'tipo':gestor.tipo,
                 'message': 'dsfsdfsdf',
                 'msg': 'ok',
                 'st':'1'
