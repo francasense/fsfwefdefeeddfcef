@@ -48,7 +48,7 @@ _user_parser.add_argument('promocao',
                           )
 
 class UserRegister(Resource):
-    #@jwt_required
+    @jwt_required
     def post(self):
         data = _user_parser.parse_args()
 
@@ -121,6 +121,7 @@ class UserLogin(Resource):
                 'refresh_token': refresh_token,
                 'username': user.username,
                 'id_user': user.id,
+                'tipo':user.tipo,
                 'message': 'dsfsdfsdf',
                 'msg': 'ok',
                 'st':'1'
