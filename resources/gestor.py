@@ -114,7 +114,7 @@ class GestorLogin(Resource):
         # this is what the `authenticate()` function did in security.py
         if gestor and safe_str_cmp(gestor.password, data['password']):
             # identity= is what the identity() function did in security.py—now stored in the JWT
-            access_token = create_access_token(identity=gestor.id, fresh=True)
+            access_token = create_access_token(identity2=gestor.id, fresh=True)
             refresh_token = create_refresh_token(gestor.id)
             return {
                 'access_token': access_token,
@@ -142,5 +142,5 @@ class TokenRefresh(Resource):
         refreshed many times over).
         """
         current_gestor = get_jwt_identity()
-        new_token = create_access_token(identity=current_gestor, fresh=False)
+        new_token = create_access_token(identity2=current_gestor, fresh=False)
         return {'access_token': new_token}, 200
