@@ -141,6 +141,6 @@ class TokenRefresh(Resource):
         given us their username and password for potentially a long time (if the token has been
         refreshed many times over).
         """
-        current_user = get_jwt_identity()
-        new_token = create_access_token(identity=current_user, fresh=False)
+        current_gestor = get_jwt_identity()
+        new_token = create_access_token(identity=current_gestor, fresh=False)
         return {'access_token': new_token}, 200
