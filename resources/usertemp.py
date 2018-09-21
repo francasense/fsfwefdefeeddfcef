@@ -65,6 +65,11 @@ class UserRegisterTemp(Resource):
             usertemp.save_to_db()
 
             access_token = create_access_token(identity=data['email'], fresh=True)
+            
+            url = "https://ninosemail.herokuapp.com/envio?q=id:{0}+tk:{1}".format(usertemp.id, access_token)
+            response_dict = requests.get(url).json()
+            return jsonify(response_dict)
+          
             return {"message": "User created successfully.",'access_token': access_token, 'id': usertemp.id, "st":"1"}, 201
 
 
