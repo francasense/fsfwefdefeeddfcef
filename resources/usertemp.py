@@ -67,6 +67,27 @@ class UserRegisterTemp(Resource):
             access_token = create_access_token(identity=data['email'], fresh=True)          
             return {"message": "User created successfully.",'access_token': access_token, 'id': usertemp.id, "st":"1"}, 201
 
+class UserRegisterMobile(Resource):
+    #@jwt_required
+    def post(self):
+        data = _user_parser.parse_args()
+        if UserModel.find_by_email(data['email']):
+            return {"message": "A user with that email already exists", "st":"2"}, 400
+        else:
+            data = _user_parser.parse_args()
+
+            usertemp = UsertempModel(**data)
+            usertemp.save_to_db()
+
+            access_token = create_access_token(identity=data['email'], fresh=True)
+
+
+            #response_dict = requests.get(url).json()
+            #return jsonify(response_dict)
+            return redirect("https://ninosemail.herokuapp.com/envio?id={}&tk={}&email={}".format(usertemp.id, access_token, data['email']), code=301)
+
+            return {"message": "User created successfully.",'access_token': access_token, 'id': usertemp.id, "st":"1"}, 201
+
 
 class Operacao(Resource):
     @jwt_required
