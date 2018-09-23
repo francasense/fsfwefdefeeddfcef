@@ -57,7 +57,7 @@ class UserRegisterTemp(Resource):
     def post(self):
         data = _user_parser.parse_args()
         if UserModel.find_by_email(data['email']):
-            return {"message": "A user with that email already exists", "st":"2"}, 400
+            return {"message":  "Já existe usuário cadastrado com esse email", "st":"2"}, 400
         else:
             data = _user_parser.parse_args()
 
@@ -72,7 +72,7 @@ class UserRegisterMobile(Resource):
     def post(self):
         data = _user_parser.parse_args()
         if UserModel.find_by_email(data['email']):
-            return {"message": "A user with that email already exists", "st":"2"}, 400
+            return {"message":  "Já existe usuário cadastrado com esse email", "st":"2"}, 400
         else:
             data = _user_parser.parse_args()
 
@@ -93,23 +93,16 @@ class Operacao(Resource):
     @jwt_required
     def get(cls, id):
         usertemp = UsertempModel.find_by_id(id)
-
         datas = usertemp.json()
-        #datas = ('cpf':datas['cpf'])
-
-        #user = UserModel(**data)    name=data['name'
-        #datas = {"cpf": usertemp.cpf, "username":usertemp.username, "email":usertemp.email, "telefone":usertemp.telefone, "tipo":usertemp.tipo, "promocao":usertemp.promocao, "msg":usertemp.msg, "password":usertemp.password}
-
-        user = UserModel(cpf=datas['cpf'],username=datas['username'],email=datas['email'],telefone=datas['telefone'],tipo=datas['tipo'],promocao=datas['promocao'],msg=datas['msg'],password=datas['password'])
-
-        #user = UserModel(datas['cpf'], datas['username'], datas['email'], datas['telefone'], datas['tipo'], datas['promocao'], datas['msg'], datas['password'])
-
-        user.save_to_db()
-        time.sleep(2)
-        usertemp.delete_from_db()
-
-        #user = UsertempModel(user_cpf, user_username, user_telefone, user_tipo, user_promocao, user_msg, user_password, user_email)
-        return {"message": "User created successfully.", "username": usertemp.username, "st":"1"}, 201
+        if UserModel.find_by_email(datas['email']):
+            return {"message": "Já existe usuário cadastrado com esse email", "st":"2"}, 400
+        else:
+          user = UserModel(cpf=datas['cpf'],username=datas['username'],email=datas['email'],telefone=datas['telefone'],tipo=datas['tipo'],promocao=datas['promocao'],msg=datas['msg'],password=datas['password'])
+          user.save_to_db()
+          
+          time.sleep(2)
+          usertemp.delete_from_db()
+          return {"message": "User created successfully.", "username": usertemp.username, "st":"1"}, 201
 
 
 class UserTemp(Resource):
