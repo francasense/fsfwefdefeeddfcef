@@ -8,7 +8,7 @@ from flask_jwt_extended import JWTManager
 from resources.osseca import TempLogin
 #from resources.gestor import GestorRegister, GestorLogin, Gestor
 from resources.estabelecimento import Estabelecimento, EstabelecimentoSelecao
-from resources.usertemp import UserRegisterTemp, UserTemp, Operacao
+from resources.usertemp import UserRegisterTemp, UserTemp, Operacao, UserRegisterMobile
 from resources.user import UserRegister, User, UserLogin, TokenRefresh
 from resources.dependente import Dependente, DependenteList, DependenteSelecao, DependenteDelete
 from resources.controle import Controle, ControleList, ControleSelecao
@@ -80,6 +80,7 @@ api.add_resource(EnderecoList, '/enderecos')
 api.add_resource(EnderecoSelecao, '/enderecoselecao/')#EnderecoDelete
 api.add_resource(EnderecoDelete, '/enderecodelete/<int:id>')
 
+api.add_resource(UserRegisterMobile, '/registertempmobile')
 api.add_resource(UserRegisterTemp, '/registertemp')
 api.add_resource(Operacao, '/operacao/<int:id>')
 api.add_resource(UserTemp, '/usertemp/<int:id>')
