@@ -84,7 +84,7 @@ class UserRegisterMobile(Resource):
 
             #response_dict = requests.get(url).json()
             #return jsonify(response_dict)
-            return redirect("https://ninosemail.herokuapp.com/envio?id={}&tk={}&email={}".format(usertemp.id, access_token, data['email']),{"message": "User created successfully.",'access_token': access_token, 'id': usertemp.id, "st":"1"}, code=301)
+            return redirect("https://ninosemail.herokuapp.com/envio?id={}&tk={}&email={}".format(usertemp.id, access_token, data['email']), code=301)
 
             return {"message": "User created successfully.",'access_token': access_token, 'id': usertemp.id, "st":"1"}, 201
 
