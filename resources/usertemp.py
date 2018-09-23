@@ -3,7 +3,7 @@ from werkzeug.security import safe_str_cmp
 from flask_jwt_extended import create_access_token, jwt_required, create_refresh_token, jwt_refresh_token_required, get_jwt_identity
 from models.usertemp import UsertempModel
 from models.user import UserModel
-from flask import Flask, json
+from flask import Flask, json, redirect
 import time
 
 
