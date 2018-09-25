@@ -87,24 +87,24 @@ class Controle(Resource):
         return (controle.json(), {'message': 'Controle cadastrado com sucesso', 'st':'1'}), 201
 
     @jwt_required
-    def delete(self, estabelecimento):
+    def delete(self, id):
         #claims = get_jwt_claims()
         #if not claims['is_admin']:
         #    return {'message': 'Admin privilege required.'}, 401
 
-        controle = ControleModel.find_by_name(estabelecimento)
+        controle = ControleModel.find_by_id_unique(id)
         if controle:
             controle.delete_from_db()
             return {'message': 'Controle deletado.'}
         return {'message': 'Controle não encontrado.'}, 404
 
     @jwt_required
-    def put(self, estabelecimento):
+    def put(self, id):
         data = Controle.parser.parse_args()
         user_id = get_jwt_identity()
-        controle = ControleModel.find_by_name(estabelecimento)
+        controle = ControleModel.find_by_id_unique(id)
         if controle:
-            controle.name = estabelecimento
+            controle.estabelecimento = data['estabelecimento']
             controle.dependente = data['dependente']
             controle.usuario = data['usuario']
             controle.responsavel = data['responsavel']
@@ -116,7 +116,7 @@ class Controle(Resource):
         else:
             #controle = ControleModel(name, user_id, **data)
             controle = ControleModel(
-            estabelecimento,
+            data['estabelecimento'],
             data['usuario'],
             data['dependente'],
             data['responsavel'],
@@ -130,6 +130,8 @@ class Controle(Resource):
         controle.save_to_db()
 
         return (controle.json(), {'message': 'Controle alterado com sucesso', 'st':'1'}), 201
+
+
 
 class ControleList(Resource):
     @jwt_required

@@ -6,7 +6,7 @@ from flask_jwt_extended import JWTManager
 
 
 from resources.osseca import TempLogin
-#from resources.gestor import GestorRegister, GestorLogin, Gestor
+from resources.dadosmapa import Dadosmapa, DadosmapaList, DadosmapaSelecao
 from resources.estabelecimento import Estabelecimento, EstabelecimentoSelecao
 from resources.usertemp import UserRegisterTemp, UserTemp, Operacao, UserRegisterMobile
 from resources.user import UserRegister, User, UserLogin, TokenRefresh
@@ -25,8 +25,8 @@ POSTGRES = {
     'host': 'ec2-54-83-13-119.compute-1.amazonaws.com',
     'port': '5432',
 }
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ekgznjyknrrepu:efd0b2e280437c4dd5ba5d7aaa0cff2f40221dae42eae81cbc460c67b4fbc3bf@ec2-54-83-13-119.compute-1.amazonaws.com:5432/dcp3rbfue209db'
-#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('URI','sqlite:///data.db')
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ekgznjyknrrepu:efd0b2e280437c4dd5ba5d7aaa0cff2f40221dae42eae81cbc460c67b4fbc3bf@ec2-54-83-13-119.compute-1.amazonaws.com:5432/dcp3rbfue209db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('URI','sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.secret_key = 'egfrdfsre'  # could do app.config['JWT_SECRET_KEY'] if we prefer
@@ -71,7 +71,11 @@ api.add_resource(DependenteList, '/dependentes')
 api.add_resource(DependenteSelecao, '/dependenteselecao/')#DependenteDelete
 api.add_resource(DependenteDelete, '/dependentedelete/<int:id>')
 
-api.add_resource(Controle, '/controle/<string:estabelecimento>')
+api.add_resource(Dadosmapa, '/dadosmapa')
+api.add_resource(DadosmapaList, '/dadosmapaList')
+api.add_resource(DadosmapaSelecao, '/dadosmapaSelecao/<string:categoria>')#categoria
+
+api.add_resource(Controle, '/controle/<int:id>')
 api.add_resource(ControleList, '/controles')
 api.add_resource(ControleSelecao, '/controleselecao/')
 

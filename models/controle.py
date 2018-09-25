@@ -50,6 +50,10 @@ class ControleModel(db.Model):
         return cls.query.filter_by(user_id=_id).all()
 
     @classmethod
+    def find_by_id_unique(cls, _id):
+        return cls.query.filter_by(user_id=_id).first()
+
+    @classmethod
     def find_all(cls):
         return cls.query.all()
 
