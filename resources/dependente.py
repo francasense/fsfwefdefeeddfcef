@@ -102,7 +102,7 @@ class DependenteDelete(Resource):
         dependente = DependenteModel.find_by_id_unique(id)
         if dependente:
             dependente.delete_from_db()
-            return {'message': 'Ninos deleted.'}
+            return {'message': 'Ninos deleted.', 'st':'1'},201
         return {'message': 'Ninos not found.'}, 404
 
     @jwt_required
@@ -127,7 +127,8 @@ class DependenteDelete(Resource):
     def get(self, id: int):
         dependente = DependenteModel.find_by_id_unique(id)
         if dependente:
-            return dependente.json()
+            return (dependente.json(), {'message': 'Dados do Nino', 'st':'1'}), 201
+
         return {'message': 'Nino não encontrado'}, 404
 
 
@@ -138,7 +139,7 @@ class DependenteList(Resource):
         user_id = get_jwt_identity()
         dependentes = [dependente.json() for dependente in DependenteModel.find_all()]
         if user_id:
-            return {'dependentes': dependentes}, 200
+            return {'dependentes': dependentes, 'st':'1'}, 200
         return {
             'dependentes': [dependente['name'] for dependente in dependentes],
             'message': 'More data available if you log in.'
@@ -151,7 +152,7 @@ class DependenteSelecao(Resource):
         user_id = get_jwt_identity()
         dependentes = [dependente.json() for dependente in DependenteModel.find_by_id(user_id)]
         if user_id:
-            return {'dependentes': dependentes, 'msg':'ok'}, 200
+            return {'dependentes': dependentes, 'msg':'ok', 'st':'1'}, 200
         return {
             'dependentes': [dependente['name'] for dependente in dependentes],
             'message': 'More data available if you log in.'
