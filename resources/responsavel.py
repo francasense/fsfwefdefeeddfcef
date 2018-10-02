@@ -85,8 +85,9 @@ class ResponsavelDelete(Resource):
         responsavel = ResponsavelModel.find_by_id_unique(id)
         if responsavel:
             responsavel.delete_from_db()
-            return {'message': 'Responsavel deleted.'}
+            return {'message': 'Responsavel deleted.', 'st':'1'}, 201
         return {'message': 'Responsavel not found.'}, 404
+
     
     @jwt_required 
     def put(self, id: int):
@@ -111,8 +112,9 @@ class ResponsavelDelete(Resource):
     def get(self, id: int):
         responsavel = ResponsavelModel.find_by_id_unique(id)
         if responsavel:
-            return responsavel.json()
-        return {'message': 'Responsavel not found'}, 404
+            return (responsavel.json(), {'message': 'Dados do Responsável', 'st':'1'}), 201
+
+        return {'message': 'Responsavel not found', 'st':'1'}, 404
 
 class ResponsavelList(Resource):
     @jwt_required
@@ -142,7 +144,7 @@ class ResponsavelSelecao(Resource):
         user_id = get_jwt_identity()
         responsavels = [responsavel.json() for responsavel in ResponsavelModel.find_by_id(user_id)]
         if user_id:
-            return {'dependentes': responsavels, 'msg':'ok'}, 200
+            return {'dependentes': responsavels, 'msg':'ok', 'st':'1'}, 201
         return {
             'responsavels': [responsavel['name'] for responsavel in responsavel],
             'message': 'More data available if you log in.'
