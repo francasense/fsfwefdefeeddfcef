@@ -45,7 +45,7 @@ class Endereco(Resource):
     def get(self, cep):
         endereco = EnderecoModel.find_by_name(cep)
         if endereco:
-            return endereco.json()
+            return (endereco.json(), {'message': 'Dados do Endereco', 'st':'1'}), 201
         return {'message': 'Endereco not found'}, 404
 
     @jwt_required
@@ -62,7 +62,8 @@ class Endereco(Resource):
         except:
             return {"message": "An error occurred inserting the endereco."}, 500
 
-        return endereco.json(), 201
+        return (endereco.json(), {'message': 'Dados do Endereco', 'st':'1'}), 201
+
 
 class EnderecoDelete(Resource):
     parser = reqparse.RequestParser()
@@ -113,7 +114,7 @@ class EnderecoDelete(Resource):
         endereco = EnderecoModel.find_by_id_unique(id)
         if endereco:
             endereco.delete_from_db()
-            return {'message': 'Endereco deleted.'}
+            return {'message': 'Endereco deleted.', 'st':'1'}, 201
         return {'message': 'Endereco not found.'}, 404
     @jwt_required
     def put(self, id: int):
@@ -134,7 +135,9 @@ class EnderecoDelete(Resource):
 
         endereco.save_to_db()
 
-        return endereco.json()
+        return (endereco.json(), {'message': 'Dados do Endereco Alterado com sucesso', 'st':'1'}), 201
+
+    
 
 
 class EnderecoList(Resource):
@@ -144,7 +147,8 @@ class EnderecoList(Resource):
         user_id = get_jwt_identity()
         enderecos = [endereco.json() for endereco in EnderecoModel.find_all()]
         if user_id:
-            return {'enderecos': enderecos}, 200
+            return {'enderecos': enderecos, 'st':'1'}, 200
+        
         return {
             'enderecos': [endereco['cep'] for endereco in enderecos],
             'message': 'More data available if you log in.'
@@ -157,7 +161,7 @@ class EnderecoSelecao(Resource):
         user_id = get_jwt_identity()
         enderecos = [endereco.json() for endereco in EnderecoModel.find_by_id(user_id)]
         if user_id:
-            return {'enderecos': enderecos}, 200
+            return {'enderecos': enderecos, 'st':'1'}, 200
         return {
             'enderecos': [endereco['cep'] for endereco in enderecos],
             'message': 'More data available if you log in.'
