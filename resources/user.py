@@ -73,7 +73,7 @@ class User(Resource):
         if not user:
             return {'message': 'User Not Found'}, 404
         #return user.json(), 200
-        return (user.json(), {'message': 'Dados do Usuário', 'st':'1'}), 201
+        return (user.json(), {'message': 'Dados do Usuário', 'st':'1'}), 200
 
 
     @classmethod
