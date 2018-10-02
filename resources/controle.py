@@ -95,7 +95,7 @@ class Controle(Resource):
         controle = ControleModel.find_by_id_unique(id)
         if controle:
             controle.delete_from_db()
-            return {'message': 'Controle deletado.'}
+            return {'message': 'Controle deletado.', 'st':'1'},201
         return {'message': 'Controle não encontrado.'}, 404
 
     @jwt_required
@@ -140,7 +140,7 @@ class ControleList(Resource):
         user_id = get_jwt_identity()
         controles = [controle.json() for controle in ControleModel.find_all()]
         if user_id:
-            return {'controles': controles}, 200
+            return {'controles': controles, 'st':'1'}, 200
         return {
             'controles': [controle['estabelecimento'] for controle in controles],
             'message': 'More data available if you log in.'
@@ -154,7 +154,7 @@ class ControleSelecao(Resource):
         user_id = get_jwt_identity()
         controles = [controle.json() for controle in ControleModel.find_by_id(user_id)]
         if user_id:
-            return {'controles': controles}, 200
+            return {'controles': controles,'st':'1'}, 200
         return {
             'controles': [controle['estabelecimento'] for controle in controles],
             'message': 'More data available if you log in.'
