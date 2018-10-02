@@ -119,16 +119,18 @@ class UserLogin(Resource):
             # identity= is what the identity() function did in security.py—now stored in the JWT
             access_token = create_access_token(identity=user.id, fresh=True)
             refresh_token = create_refresh_token(user.id)
-            return {
-                'access_token': access_token,
-                'refresh_token': refresh_token,
-                'username': user.username,
-                'id_user': user.id,
-                'tipo':user.tipo,
-                'message': 'dsfsdfsdf',
-                'msg': 'ok',
-                'st':'1'
-            }, 200
+            #return {
+             #   'access_token': access_token,
+              #  'refresh_token': refresh_token,
+               # 'username': user.username,
+                #'id_user': user.id,
+                #'tipo':user.tipo,
+                #'message': 'dsfsdfsdf',
+                #'msg': 'ok',
+                #'st':'1'
+            #}, 200
+            return (user.json(), {'message': 'Dados do Usuário', 'st':'1'}), 201
+
 
         return {"message": "Usuário ou senha inválido!"}, 401
 
