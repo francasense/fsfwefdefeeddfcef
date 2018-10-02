@@ -55,7 +55,7 @@ class Estabelecimento(Resource):
     def get(self, nome):
         estabelecimento = EstabelecimentoModel.find_by_name(nome)
         if estabelecimento:
-            return estabelecimento.json()
+            return (estabelecimento.json(), {'message': 'Dados do estabelecimento', 'st':'1'}), 201
         return {'message': 'estabelecimento not found'}, 404
 
     @jwt_required
@@ -80,7 +80,7 @@ class Estabelecimento(Resource):
         estabelecimento = EstabelecimentoModel.find_by_id_unique(id)
         if estabelecimento:
             estabelecimento.delete_from_db()
-            return {'message': 'estabelecimento deletado.'}
+            return {'message': 'estabelecimento deletado.', 'st':'1'}, 201
         return {'message': 'estabelecimento não encontrado.'}, 404
 
     @jwt_required
@@ -113,7 +113,7 @@ class EstabelecimentoList(Resource):
         user_id = get_jwt_identity()
         estabelecimento = [estabelecimento.json() for estabelecimento in EstabelecimentoModel.find_all()]
         if user_id:
-            return {'estabelecimento': estabelecimento}, 200
+            return {'estabelecimento': estabelecimento, 'st':'1'}, 201
         return {
             'estabelecimento': [estabelecimento['nome'] for estabelecimento in estabelecimento],
             'message': 'More data available if you log in.'
@@ -126,7 +126,7 @@ class EstabelecimentoSelecao(Resource):
         user_id = get_jwt_identity()
         estabelecimento = [estabelecimento.json() for estabelecimento in EstabelecimentoModel.find_by_id(user_id)]
         if user_id:
-            return {'estabelecimento': estabelecimento}, 200
+            return {'estabelecimento': estabelecimento,'st':'1'}, 201
         return {
             'estabelecimento': [estabelecimento['nome'] for estabelecimento in estabelecimento],
             'message': 'More data available if you log in.'
