@@ -84,7 +84,7 @@ class MenssDelete(Resource):
     
 
 
-class EnderecoList(Resource):
+class MenssList(Resource):
     @jwt_required
     def get(self):
 
@@ -94,7 +94,7 @@ class EnderecoList(Resource):
             return {'mensagens': mensss, 'st':'1'}, 200
         
         return {
-            'mensagens': [menss['cep'] for menss in mensss],
+            'mensagens': [menss['id'] for menss in mensss],
             'message': 'More data available if you log in.'
         }, 200
 
@@ -107,6 +107,6 @@ class MenssSelecao(Resource):
         if user_id:
             return {'mensagens': mensss, 'st':'1'}, 200
         return {
-            'mensagens': [menss['cep'] for menss in mensss],
+            'mensagens': [menss['id'] for menss in mensss],
             'message': 'More data available if you log in.'
         }, 200
