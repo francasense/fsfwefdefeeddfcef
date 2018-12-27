@@ -105,8 +105,8 @@ api.add_resource(EstabelecimentoSelecao, '/estabelecimentoselecao/')
 
 api.add_resource(TokenRefresh, '/refresh')
 
-api.add_resource(Menss, '/menss/<int:id>')
-api.add_resource(MenssList, '/menss')
+api.add_resource(Menss, '/menss')
+api.add_resource(MenssList, '/mensss')
 api.add_resource(MenssSelecao, '/menssselecao/')#EnderecoDelete
 api.add_resource(MenssDelete, '/menssdelete/<int:id>')
 
