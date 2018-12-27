@@ -48,7 +48,7 @@ _user_parser.add_argument('promocao',
                           )
 
 class UserRegister(Resource):
-    @jwt_required
+    #@jwt_required
     def post(self):
         data = _user_parser.parse_args()
 
