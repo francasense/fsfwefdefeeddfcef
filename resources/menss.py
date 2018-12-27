@@ -27,11 +27,11 @@ class Menss(Resource):
         return {'message': 'mensagem nao encontrada'}, 404
 
     @jwt_required
-    def post(self, id):
+    def post(self):
 
         data = Menss.parser.parse_args()
 
-        endereco = MenssModel(id, **data)
+        menss = MenssModel(**data)
 
         try:
             menss.save_to_db()
