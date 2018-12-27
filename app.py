@@ -14,6 +14,8 @@ from resources.dependente import Dependente, DependenteList, DependenteSelecao, 
 from resources.controle import Controle, ControleList, ControleSelecao
 from resources.responsavel import Responsavel, ResponsavelList, ResponsavelSelecao, ResponsavelDelete
 from resources.endereco import Endereco, EnderecoList, EnderecoSelecao, EnderecoDelete
+from resources.menss import Menss, MenssList, MenssSelecao, MenssDelete
+
 from resources.teste import Teste
 
 app = Flask(__name__)
@@ -102,6 +104,11 @@ api.add_resource(Estabelecimento, '/estabelecimento')
 api.add_resource(EstabelecimentoSelecao, '/estabelecimentoselecao/')
 
 api.add_resource(TokenRefresh, '/refresh')
+
+api.add_resource(Menss, '/menss/<int:id>')
+api.add_resource(MenssList, '/menss')
+api.add_resource(MenssSelecao, '/menssselecao/')#EnderecoDelete
+api.add_resource(MenssDelete, '/menssdelete/<int:id>')
 
 if __name__ == '__main__':
     db.init_app(app)
