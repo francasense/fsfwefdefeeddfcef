@@ -74,11 +74,11 @@ class Dadosmapa(Resource):
         return {'message': 'dadosmapa not found'}, 404
 
     #@jwt_required
-    def post(self):
+    def post(self, state):
 
         data = Dadosmapa.parser.parse_args()
 
-        dadosmapa = DadosmapaModel(**data)
+        dadosmapa = DadosmapaModel(state, **data)
         try:
             dadosmapa.save_to_db()
         except:
