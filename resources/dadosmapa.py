@@ -10,11 +10,6 @@ class Dadosmapa(Resource):
                         required=True,
                         help="O campo não pode esta vazio"
                         )
-    parser.add_argument('state',
-                        type=str,
-                        required=True,
-                        help="O campo não pode esta vazio"
-                        )
     parser.add_argument('detalhes',
                         type=str,
                         required=True,
