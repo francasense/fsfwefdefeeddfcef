@@ -17,7 +17,7 @@ class DadosmapaModel(db.Model):
     longitude = db.Column(db.String(20))# -34.844726
     boolean = db.Column(db.String(3))# -SIM
 
-    def __init__(categoria, state, detalhes, horario, valor, icon, img01, img02, img03, latitude, longitude, boolean):
+    def __init__(self, categoria, state, detalhes, horario, valor, icon, img01, img02, img03, latitude, longitude, boolean):
         self.categoria = categoria
         self.state = state
         self.detalhes = detalhes
