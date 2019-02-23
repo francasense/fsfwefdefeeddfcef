@@ -66,7 +66,7 @@ class Dadosmapa(Resource):
                         help="O campo não pode esta vazio"
                         )
 
-    @jwt_required  # No longer needs brackets
+    #@jwt_required  # No longer needs brackets
     def get(self, state):
         dadosmapa = DadosmapaModel.find_state(state)
         if dadosmapa:
@@ -86,7 +86,7 @@ class Dadosmapa(Resource):
 
         return (dadosmapa.json(), {'message': 'dadosmapa cadastrado com sucesso', 'st':'1'}), 201
 
-    @jwt_required
+    #@jwt_required
     def delete(self, id):
         #claims = get_jwt_claims()
         #if not claims['is_admin']:
@@ -98,7 +98,7 @@ class Dadosmapa(Resource):
             return {'message': 'dadosmapa deletado.'}
         return {'message': 'dadosmapa não encontrado.'}, 404
 
-    @jwt_required
+    #@jwt_required
     def put(self, id: int):
         data = Dadosmapa.parser.parse_args()
         #user_id = get_jwt_identity()
@@ -126,7 +126,7 @@ class Dadosmapa(Resource):
         return (dadosmapa.json(), {'message': 'dadosmapa alterado com sucesso', 'st':'1'}), 201
 
 class DadosmapaList(Resource):
-    @jwt_required
+    #@jwt_required
     def get(self):
 
         user_id = get_jwt_identity()
