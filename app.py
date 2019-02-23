@@ -73,7 +73,7 @@ api.add_resource(DependenteList, '/dependentes')
 api.add_resource(DependenteSelecao, '/dependenteselecao/')#DependenteDelete
 api.add_resource(DependenteDelete, '/dependentedelete/<int:id>')
 
-api.add_resource(Dadosmapa, '/dadosmapa/<string:state>')
+api.add_resource(Dadosmapa, '/dadosmapa')
 api.add_resource(DadosmapaList, '/dadosmapaList')
 api.add_resource(DadosmapaSelecao, '/dadosmapaSelecao/<string:categoria>')#categoria
 
