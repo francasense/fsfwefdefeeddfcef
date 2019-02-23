@@ -10,6 +10,11 @@ class Dadosmapa(Resource):
                         required=True,
                         help="O campo não pode esta vazio"
                         )
+    parser.add_argument('state',
+                        type=str,
+                        required=True,
+                        help="O campo não pode esta vazio"
+                        )
     parser.add_argument('detalhes',
                         type=str,
                         required=True,
@@ -69,11 +74,11 @@ class Dadosmapa(Resource):
         return {'message': 'dadosmapa not found'}, 404
 
     #@jwt_required
-    def post(self, state):
+    def post(self):
 
         data = Dadosmapa.parser.parse_args()
 
-        dadosmapa = DadosmapaModel(state, **data)
+        dadosmapa = DadosmapaModel(**data)
         try:
             dadosmapa.save_to_db()
         except:
