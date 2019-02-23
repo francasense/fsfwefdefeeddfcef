@@ -129,14 +129,15 @@ class DadosmapaList(Resource):
     #@jwt_required
     def get(self):
 
-        user_id = get_jwt_identity()
+        #user_id = get_jwt_identity()
         dadosmapa = [dadosmapa.json() for dadosmapa in DadosmapaModel.find_all()]
-        if user_id:
-            return {'dadosmapa': dadosmapa}, 200
-        return {
-            'dadosmapa': [dadosmapa['nome'] for dadosmapa in dadosmapa],
-            'message': 'More data available if you log in.'
-        }, 200
+        return {'dadosmapa': dadosmapa}, 200
+        #if user_id:
+            #return {'dadosmapa': dadosmapa}, 200
+        #return {
+        #    'dadosmapa': [dadosmapa['nome'] for dadosmapa in dadosmapa],
+        #    'message': 'More data available if you log in.'
+        #}, 200
 
 class DadosmapaSelecao(Resource):
     #@jwt_required
