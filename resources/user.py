@@ -67,7 +67,7 @@ class User(Resource):
     This resource can be useful when testing our Flask app. We may not want to expose it to public users, but for the
     sake of demonstration in this course, it can be useful when we are manipulating data regarding the users.
     """
-    @jwt_required
+    @jwt_refresh_token_required
     def get(cls, id):
         user = UserModel.find_by_id(id)
         if not user:
@@ -86,7 +86,7 @@ class User(Resource):
 
 
 
-    @jwt_required
+    #@jwt_refresh_token_required
     def put(self, id: int):
         data = _user_parser.parse_args()
 
