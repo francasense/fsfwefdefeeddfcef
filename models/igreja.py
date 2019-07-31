@@ -103,30 +103,30 @@ class IgrejaModel(db.Model):
             'cep': self.cep,
             'cidade': self.cidade,
             'telefone': self.telefone,
-            'uf': self.uf
-            'ru_reuniao': self.ru_reuniao 
-            'ru_data_inicial': self.ru_data_inicial 
-            'ru_data_final': self.ru_data_final 
-            'ru_horario_entrada': self.ru_horario_entrada 
-            'ru_horario_saida': self.ru_horario_saida           
-            'ru_responsavel': self.ru_responsavel 
-            'ru_aberto_publico': self.ru_aberto_publico 
-            'ru_telefone': self.ru_telefone 
-            'ru_titulo': self.ru_titulo 
-            'ru_descricao': self.ru_descricao 
-            'ru_local': self.ru_local 
-            'ev_nome': self.ev_nome 
-            'ev_data_inicial': self.ev_data_inicial 
-            'ev_data_final': self.ev_data_final 
-            'ev_horario_entrada': self.ev_horario_entrada 
-            'ev_horario_saida': self.ev_horario_saida 
-            'ev_responsavel': self.ev_responsavel 
-            'ev_aberto_publico': self.ev_aberto_publico 
-            'ev_telefone': self.ev_telefone 
-            'ev_valor': self.ev_valor 
-            'ev_local': self.ev_local 
-            'latitude': self.latitude 
-            'longitude': self.longitude 
+            'uf': self.uf,
+            'ru_reuniao': self.ru_reuniao,
+            'ru_data_inicial': self.ru_data_inicial, 
+            'ru_data_final': self.ru_data_final, 
+            'ru_horario_entrada': self.ru_horario_entrada, 
+            'ru_horario_saida': self.ru_horario_saida,           
+            'ru_responsavel': self.ru_responsavel, 
+            'ru_aberto_publico': self.ru_aberto_publico, 
+            'ru_telefone': self.ru_telefone, 
+            'ru_titulo': self.ru_titulo, 
+            'ru_descricao': self.ru_descricao, 
+            'ru_local': self.ru_local, 
+            'ev_nome': self.ev_nome, 
+            'ev_data_inicial': self.ev_data_inicial, 
+            'ev_data_final': self.ev_data_final, 
+            'ev_horario_entrada': self.ev_horario_entrada, 
+            'ev_horario_saida': self.ev_horario_saida, 
+            'ev_responsavel': self.ev_responsavel, 
+            'ev_aberto_publico': self.ev_aberto_publico, 
+            'ev_telefone': self.ev_telefone, 
+            'ev_valor': self.ev_valor, 
+            'ev_local': self.ev_local, 
+            'latitude': self.latitude, 
+            'longitude': self.longitude, 
             
         }
 
