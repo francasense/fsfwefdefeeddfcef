@@ -5,6 +5,7 @@ from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
 from resources.igreja import Igreja, Igrejaunica, Igrejatipo
+from resources.teste import Teste
 
 
 app = Flask(__name__)
