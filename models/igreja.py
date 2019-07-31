@@ -73,4 +73,3 @@ class IgrejaModel(db.Model):
     @classmethod
     def find_all(cls):
         return cls.query.all()
-© 2019 GitHub, Inc.
