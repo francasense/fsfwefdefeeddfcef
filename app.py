@@ -4,8 +4,8 @@ from flask import Flask
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
-
 from resources.igreja import Igreja, Igrejaunica, Igrejatipo
+
 
 app = Flask(__name__)
 
@@ -27,14 +27,34 @@ api = Api(app)
 
 jwt = JWTManager(app)
 
+"""
+`claims` are data we choose to attach to each jwt payload
+and for each jwt protected endpoint, we can retrieve these claims via `get_jwt_claims()`
+one possible use case for claims are access level control, which is showne below.
+
+@jwt.user_claims_loader
+def add_claims_to_jwt(identity):  # Remember identity is what we define when creating the access token
+    if identity == 1:   # instead of hard-coding, we should read from a config file or database to get a list of admins instead
+        return {'is_admin': True}
+    return {'is_admin': False}
+"""
+
 @app.before_first_request
 def create_tables():
     db.create_all()
 
+#@jwt.expired_token_loader
+#def expired_token_callback():
+ #   return jsonify({
+
+  #      'message': 'The token has expired.',
+   #     'error': 'token_expired'
+    #}), 401
+#api.add_resource(TempLogin, '/templogin')
+
 api.add_resource(Igreja, '/igreja')
 api.add_resource(Igrejaunica, '/igrejaunica/<int:id>')
 api.add_resource(Igrejatipo, '/igrejatipo/<string:tipo>')
-
 
 if __name__ == '__main__':
     db.init_app(app)
