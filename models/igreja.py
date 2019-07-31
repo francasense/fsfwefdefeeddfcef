@@ -43,10 +43,16 @@ class IgrejaModel(db.Model):
     ev_telefone = db.Column(db.String(30))
     ev_valor = db.Column(db.String(30))
     ev_local = db.Column(db.String(100))
+    img_igreja = db.Column(db.String(200))
+    img_ru = db.Column(db.String(200))
+    img_ev = db.Column(db.String(200))
 
 
-    def __init__(evento,ru_reuniao,ru_data_inicial,ru_data_final,ru_horario_entrada,ru_horario_saida,ru_responsavel,ru_aberto_publico,ru_telefone,ru_titulo,ru_descricao,ru_local,ev_nome,ev_data_inicial,ev_data_final,ev_horario_entrada,ev_horario_saida,ev_responsavel,ev_aberto_publico,ev_telefone,ev_valor,ev_local,latitude, longitude, tipo, cnpj, razao_social, natureza_juridica, data_fundacao,responsavel,logradouro,numero,bairro,complemento,cep,cidade,telefone,uf):
+    def __init__(img_igreja,img_ru,img_ev,evento,ru_reuniao,ru_data_inicial,ru_data_final,ru_horario_entrada,ru_horario_saida,ru_responsavel,ru_aberto_publico,ru_telefone,ru_titulo,ru_descricao,ru_local,ev_nome,ev_data_inicial,ev_data_final,ev_horario_entrada,ev_horario_saida,ev_responsavel,ev_aberto_publico,ev_telefone,ev_valor,ev_local,latitude, longitude, tipo, cnpj, razao_social, natureza_juridica, data_fundacao,responsavel,logradouro,numero,bairro,complemento,cep,cidade,telefone,uf):
 
+        self.img_igreja = img_igreja
+        self.img_ru = img_ru
+        self.img_ev = img_ev
         self.cnpj = cnpj
         self.evento = evento
         self.tipo = tipo
@@ -89,6 +95,9 @@ class IgrejaModel(db.Model):
     def json(self):
         return {
             'id': self.id,
+            'img_igreja': self.img_igreja,
+            'img_ru': self.img_ru,
+            'img_ev': self.img_ev,
             'evento': self.evento,
             'tipo': self.tipo,
             'cnpj': self.cnpj,
