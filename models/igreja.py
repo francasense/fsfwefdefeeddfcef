@@ -64,7 +64,7 @@ class IgrejaModel(db.Model):
             'telefone': self.telefone,
             'uf': self.uf, 
             'latitude': self.latitude, 
-            'longitude': self.longitude, 
+            'longitude': self.longitude
             
         }
 
