@@ -225,14 +225,12 @@ class Igreja(Resource):
 
 class Igrejaunica(Resource):
 
-    def get(self, id):
-        igreja = [igreja.json() for igreja in IgrejaModel.find_by_id_unique(id)]
-        if id:
-            return {'igreja': igreja}, 200
-        return {
-            'igreja': [igreja['nome'] for igreja in igreja],
-            'message': 'More data available if you log in.'
-        }, 200
+    def get(self, razao_social):
+        igreja = DadosmapaModel.find_by_id_unique(razao_social)
+        if igreja:
+            return igreja.json()
+        return {'message': 'igreja not found'}, 404
+
 
 
 class Igrejatipo(Resource):
