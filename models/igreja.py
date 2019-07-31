@@ -21,7 +21,7 @@ class IgrejaModel(db.Model):
     uf = db.Column(db.String(30))
     latitude = db.Column(db.String(30))
     longitude = db.Column(db.String(30))
-    img_igreja = db.Column(db.String(200))
+    img_igreja = db.Column(db.String(300))
 
 
     def __init__(img_igreja,latitude, longitude, tipo, cnpj, razao_social, natureza_juridica, data_fundacao,responsavel,logradouro,numero,bairro,complemento,cep,cidade,telefone,uf):
