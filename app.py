@@ -57,6 +57,8 @@ api.add_resource(Igreja, '/igreja')
 api.add_resource(Igrejaunica, '/igrejaunica/<int:id>')
 api.add_resource(Igrejatipo, '/igrejatipo/<string:tipo>')
 
+api.add_resource(Teste, '/teste')
+
 if __name__ == '__main__':
     db.init_app(app)
     app.run(port=5000, debug=True)
