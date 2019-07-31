@@ -16,10 +16,12 @@ class EventoModel(db.Model):
     ev_telefone = db.Column(db.String(30))
     ev_valor = db.Column(db.String(30))
     ev_local = db.Column(db.String(100))
+    img_ev = db.Column(db.String(200))
 
-    def __init__(igreja,ev_nome,ev_data_inicial,ev_data_final,ev_horario_entrada,ev_horario_saida,ev_responsavel,ev_aberto_publico,ev_telefone,ev_valor,ev_local):
+    def __init__(img_ev,igreja,ev_nome,ev_data_inicial,ev_data_final,ev_horario_entrada,ev_horario_saida,ev_responsavel,ev_aberto_publico,ev_telefone,ev_valor,ev_local):
 
         self.igreja = igreja
+        self.img_ev = img_ev
         self.ev_nome = ev_nome
         self.ev_data_inicial = ev_data_inicial
         self.ev_data_final = ev_data_final
@@ -34,6 +36,7 @@ class EventoModel(db.Model):
     def json(self):
         return {
             'id': self.id,
+            'img_ev': self.img_ev,
             'igreja': self.igreja,
             'ev_nome': self.ev_nome, 
             'ev_data_inicial': self.ev_data_inicial, 
