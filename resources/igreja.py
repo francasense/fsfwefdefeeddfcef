@@ -75,6 +75,132 @@ class Igreja(Resource):
                         required=True,
                         help="Every estabelecimento needs a valor_contrato."
                         )
+    parser.add_argument('evento',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('tipo',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ru_reuniao',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ru_data_inicial',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ru_data_final',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ru_horario_entrada',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ru_horario_saida',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ru_responsavel',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ru_aberto_publico',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ru_telefone',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ru_titulo',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ru_descricao',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ru_local',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ev_nome',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ev_data_inicial',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ev_data_final',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ev_horario_entrada',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ev_horario_saida',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ev_responsavel',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ev_aberto_publico',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ev_telefone',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ev_valor',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('ev_local',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('latitude',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+    parser.add_argument('longitude',
+                        type=str,
+                        required=True,
+                        help="Every estabelecimento needs a valor_contrato."
+                        )
+
 
     @jwt_required  # No longer needs brackets
     def get(self, nome):
