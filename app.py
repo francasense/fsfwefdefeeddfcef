@@ -5,8 +5,8 @@ from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
 from resources.igreja import Igreja, Igrejaunica, Igrejatipo
-from resources.evento import Evento, Eventobusca
-from resources.reuniao import Reuniao, Reuniaobusca
+from resources.evento import Evento, Eventobuscar
+from resources.reuniao import Reuniao, Reuniaobuscar
 
 from resources.teste import Teste
 
@@ -61,10 +61,10 @@ api.add_resource(Igrejaunica, '/igrejaunica/<int:id>')
 api.add_resource(Igrejatipo, '/igrejatipo/<string:tipo>')
 
 api.add_resource(Evento, '/evento')
-api.add_resource(Eventobusca, '/eventobusca/<int:id>')
+api.add_resource(Eventobuscar, '/eventobusca/<int:id>')
 
 api.add_resource(Reuniao, '/reuniao')
-api.add_resource(Reuniaobusca, '/reuniaobusca/<int:id>')
+api.add_resource(Reuniaobuscar, '/reuniaobusca/<int:id>')
 
 api.add_resource(Teste, '/teste')
 
