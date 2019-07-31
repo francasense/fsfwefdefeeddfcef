@@ -96,7 +96,7 @@ class Igreja(Resource):
                         )
 
 
-    def get(self, nome):
+    def get(self, razao_social):
         igreja = IgrejaModel.find_by_name(razao_social)
         if igreja:
             return (igreja.json(), {'message': 'Dados do estabelecimento', 'st':'1'}), 201
