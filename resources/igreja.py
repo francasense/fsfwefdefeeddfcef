@@ -2,9 +2,23 @@ from flask_restful import Resource, reqparse
 from flask_jwt_extended import jwt_required, get_jwt_claims, get_jwt_identity, jwt_optional, fresh_jwt_required
 from models.igreja import IgrejaModel
 
-
 class Igreja(Resource):
     parser = reqparse.RequestParser()
+    parser.add_argument('img_igreja',
+                        type=str,
+                        required=True,
+                        help="This field cannot be left blank!"
+                        )
+    parser.add_argument('img_ru',
+                        type=str,
+                        required=True,
+                        help="This field cannot be left blank!"
+                        )
+    parser.add_argument('img_ev',
+                        type=str,
+                        required=True,
+                        help="This field cannot be left blank!"
+                        )
     parser.add_argument('tipo',
                         type=str,
                         required=True,
